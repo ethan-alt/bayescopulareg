@@ -75,6 +75,9 @@ XPtr<zPtr> putzPtrInXPtr( std::string distname ) {
   
   else if ( distname == "binomial" || distname == "poisson" )
     return XPtr<zPtr>( new zPtr( &update_Z_discrete ) ) ;
+  
+  else
+    return XPtr<zPtr>(R_NilValue);
 }
 
 

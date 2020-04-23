@@ -138,6 +138,9 @@ XPtr<logPostPtr> putlogPostPtrInXPtr( std::string distname ) {
   // Call discrete if binomial or poisson
   else if ( distname == "binomial" || distname == "poisson" )
     return XPtr<logPostPtr>( new logPostPtr( &logPost_discrete ) );
+  
+  else
+    return XPtr<logPostPtr>(R_NilValue);
 }
 
 
