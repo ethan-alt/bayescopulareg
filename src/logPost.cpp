@@ -38,7 +38,7 @@ double logPost_continuous (
   // add on log likelihood for Z's
   arma::mat ZtZ = Z.t() * Z;
   arma::mat GammainvMinusEye = Gammainv - arma::eye(J, J);
-  logPost += 0.5 * ( n * log( arma::det( Gammainv ) ) - arma::accu( GammainvMinusEye % ZtZ ) );   // % = element-wise mult
+  logPost += -0.5 * ( n * log( arma::det( Gammainv ) ) + arma::accu( GammainvMinusEye % ZtZ ) );   // % = element-wise mult
   
   return logPost;
 }

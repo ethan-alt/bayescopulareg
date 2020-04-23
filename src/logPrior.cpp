@@ -107,7 +107,8 @@ double logInitPrior_cpp (
   double const& gamma0,
   int const& p
 ) {
-  return ( 0.5 * p + 1 - alpha0 ) * log(phi) - pow( 2 * c0 * phi, -1 ) * arma::dot(beta, beta) - gamma0 / phi;
+  double tau = pow(phi, -1);
+  return ( (0.5 * p + alpha0 - 1) * log(tau) - 0.5 * (tau / c0) * arma::dot(beta, beta) - gamma0 * tau );
 }
 
 

@@ -125,10 +125,10 @@ mvbayesglm <- function(
   ## Define hyperparameters if null
   ## 
   if ( is.null(alpha0) ) {
-    alpha0 = rep(.01, J)
+    alpha0 = rep(.1, J)
   }
   if ( is.null(gamma0) ) {
-    gamma0 = rep(.01, J)
+    gamma0 = rep(.1, J)
   }
   if ( is.null( S0beta ) ) {
     get_cov_mtx <- function(f, data) {
