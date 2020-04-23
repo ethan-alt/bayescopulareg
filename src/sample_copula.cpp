@@ -28,7 +28,8 @@ using namespace Rcpp;
 //' @param phi0vec \code{numeric} vector giving starting values for dispersion parameters
 //' 
 //' @return sampled correlation matrix
-//' @export
+//' @keywords internal
+//' @noRd
 // [[Rcpp::export]]
 List sample_copula_cpp (
     arma::mat const& ymat,

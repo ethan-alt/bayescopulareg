@@ -15,7 +15,8 @@
 #' @param n number of observations
 #' 
 #' @return vector applying CDF to \eqn{ y \mid X, \beta, \phi }
-#' @export
+#' @keywords internal
+#' @noRd
 cdf_cpp <- function(y, X, beta, phi, distname, linkname, n) {
     .Call('_glmPOS_cdf_cpp', PACKAGE = 'glmPOS', y, X, beta, phi, distname, linkname, n)
 }
@@ -34,7 +35,8 @@ cdf_cpp <- function(y, X, beta, phi, distname, linkname, n) {
 #' @param n number of observations
 #' 
 #' @return vector of standard normal variables
-#' @export
+#' @keywords internal
+#' @noRd
 conv_to_normal <- function(y, X, beta, phi, distname, linkname, n) {
     .Call('_glmPOS_conv_to_normal', PACKAGE = 'glmPOS', y, X, beta, phi, distname, linkname, n)
 }
@@ -57,7 +59,8 @@ condnormal_cpp <- function(Z, Gamma, j) {
 #' @param J number of endpoints
 #' 
 #' @return a \eqn{n \times J} matrix of samples from the predictive posterior density
-#' @export
+#' @keywords internal
+#' @noRd
 copula_predict <- function(Xlist, distnamevec, linknamevec, Gamma, betasample, phisample, n, J) {
     .Call('_glmPOS_copula_predict', PACKAGE = 'glmPOS', Xlist, distnamevec, linknamevec, Gamma, betasample, phisample, n, J)
 }
@@ -77,7 +80,8 @@ copula_predict <- function(Xlist, distnamevec, linknamevec, Gamma, betasample, p
 #' @param M number of samples
 #' 
 #' @return a \eqn{n \times J} matrix of samples from the predictive posterior density
-#' @export
+#' @keywords internal
+#' @noRd
 copula_predict_all <- function(Xlistlist, distnamevec, linknamevec, betasamplelist, phisamplemat, Gammaarray, n, J, M) {
     .Call('_glmPOS_copula_predict_all', PACKAGE = 'glmPOS', Xlistlist, distnamevec, linknamevec, betasamplelist, phisamplemat, Gammaarray, n, J, M)
 }
@@ -95,7 +99,8 @@ copula_predict_all <- function(Xlistlist, distnamevec, linknamevec, betasampleli
 #' @param n number of observations
 #'
 #' @return vector applying CDF to \eqn{ y \mid X, \beta, \phi }
-#' @export
+#' @keywords internal
+#' @noRd
 invcdf_cpp <- function(u, X, beta, phi, distname, linkname, n) {
     .Call('_glmPOS_invcdf_cpp', PACKAGE = 'glmPOS', u, X, beta, phi, distname, linkname, n)
 }
@@ -113,7 +118,8 @@ invcdf_cpp <- function(u, X, beta, phi, distname, linkname, n) {
 #' @param n number of observations
 #'
 #' @return \code{vector} applying inverse CDF
-#' @export
+#' @keywords internal
+#' @noRd
 sample_y <- function(z, X, beta, phi, distname, linkname, n) {
     .Call('_glmPOS_sample_y', PACKAGE = 'glmPOS', z, X, beta, phi, distname, linkname, n)
 }
@@ -201,7 +207,8 @@ NULL
 #' 
 #' 
 #' @return \code{vector} applying inverse link function to \code{eta}
-#' @export
+#' @keywords internal
+#' @noRd
 linkinv_cpp <- function(eta, linkname) {
     .Call('_glmPOS_linkinv_cpp', PACKAGE = 'glmPOS', eta, linkname)
 }
@@ -231,7 +238,8 @@ linkinv_cpp <- function(eta, linkname) {
 #' @param n0 historical data sample size
 #' 
 #' @return scalar giving log posterior density for (beta, phi)
-#' @export
+#' @keywords internal
+#' @noRd
 logPost <- function(y, X, beta, phi, Z, Gammainv, distname, linkname, n, j, J, p, c0, alpha0, gamma0, b0, y0, X0, n0) {
     .Call('_glmPOS_logPost', PACKAGE = 'glmPOS', y, X, beta, phi, Z, Gammainv, distname, linkname, n, j, J, p, c0, alpha0, gamma0, b0, y0, X0, n0)
 }
@@ -251,7 +259,8 @@ logPost <- function(y, X, beta, phi, Z, Gammainv, distname, linkname, n, j, J, p
 #' @param n0 historical data sample size
 #' 
 #' @return scalar giving log prior density
-#' @export
+#' @keywords internal
+#' @noRd
 logPowerPrior_cpp <- function(y0, X0, beta, phi, b0, distname, linkname, n0) {
     .Call('_glmPOS_logPowerPrior_cpp', PACKAGE = 'glmPOS', y0, X0, beta, phi, b0, distname, linkname, n0)
 }
@@ -270,7 +279,8 @@ logPowerPrior_cpp <- function(y0, X0, beta, phi, b0, distname, linkname, n0) {
 #' @param gamma0 rate parameter for inverse dispersion
 #' @param p dimension of \code{beta}
 #' @return scalar giving log prior joint density
-#' @export
+#' @keywords internal
+#' @noRd
 logInitPrior_cpp <- function(beta, phi, c0, alpha0, gamma0, p) {
     .Call('_glmPOS_logInitPrior_cpp', PACKAGE = 'glmPOS', beta, phi, c0, alpha0, gamma0, p)
 }
@@ -358,7 +368,8 @@ NULL
 #' @param distname name of distribution as a string. Must be one of \code{ c ( "gaussian", "Gamma", "poisson", "binomial" ) ) }
 #' 
 #' @return scalar giving log likelihood
-#' @export
+#' @keywords internal
+#' @noRd
 loglik_cpp <- function(y, X, beta, phi, distname, linkname, n) {
     .Call('_glmPOS_loglik_cpp', PACKAGE = 'glmPOS', y, X, beta, phi, distname, linkname, n)
 }
@@ -387,7 +398,8 @@ loglik_cpp <- function(y, X, beta, phi, distname, linkname, n) {
 #' @param phi0vec \code{numeric} vector giving starting values for dispersion parameters
 #' 
 #' @return sampled correlation matrix
-#' @export
+#' @keywords internal
+#' @noRd
 sample_copula_cpp <- function(ymat, Xlist, distnamevec, linknamevec, c0vec, S0betalist, sigma0logphivec, alpha0vec, gamma0vec, Gamma, v0, V0, b0, y0mat, X0list, M, beta0list, phi0vec) {
     .Call('_glmPOS_sample_copula_cpp', PACKAGE = 'glmPOS', ymat, Xlist, distnamevec, linknamevec, c0vec, S0betalist, sigma0logphivec, alpha0vec, gamma0vec, Gamma, v0, V0, b0, y0mat, X0list, M, beta0list, phi0vec)
 }
@@ -403,7 +415,8 @@ sample_copula_cpp <- function(ymat, Xlist, distnamevec, linknamevec, c0vec, S0be
 #' @param v0V0 v0 * hyperparameter giving scale matrix for inverse Wishart sample
 #' 
 #' @return sampled correlation matrix
-#' @export
+#' @keywords internal
+#' @noRd
 update_Gamma <- function(Z, n, v0, v0V0) {
     .Call('_glmPOS_update_Gamma', PACKAGE = 'glmPOS', Z, n, v0, v0V0)
 }
@@ -424,7 +437,8 @@ update_Gamma <- function(Z, n, v0, v0V0) {
 #' @param j index of which column of Z to update, an integer between 0 and J-1
 #' 
 #' @return vector applying CDF to \eqn{ y \mid X, \beta, \phi }
-#' @export
+#' @keywords internal
+#' @noRd
 update_Z <- function(y, X, beta, phi, Z, Gamma, distname, linkname, n, j) {
     .Call('_glmPOS_update_Z', PACKAGE = 'glmPOS', y, X, beta, phi, Z, Gamma, distname, linkname, n, j)
 }

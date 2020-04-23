@@ -142,7 +142,8 @@ XPtr<invcdfPtr> putInvcdfPtrInXPtr( std::string distname ) {
 //' @param n number of observations
 //'
 //' @return vector applying CDF to \eqn{ y \mid X, \beta, \phi }
-//' @export
+//' @keywords internal
+//' @noRd
 // [[Rcpp::export]]
 arma::vec invcdf_cpp(
     arma::vec const& u,
@@ -176,7 +177,8 @@ arma::vec invcdf_cpp(
 //' @param n number of observations
 //'
 //' @return \code{vector} applying inverse CDF
-//' @export
+//' @keywords internal
+//' @noRd
 // [[Rcpp::export]]
 arma::vec sample_y (
   arma::vec const& z,

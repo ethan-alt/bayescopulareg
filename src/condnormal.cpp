@@ -19,7 +19,8 @@ using namespace Rcpp;
 //' @param n number of observations
 //' 
 //' @return vector of standard normal variables
-//' @export
+//' @keywords internal
+//' @noRd
 // [[Rcpp::export]]
 arma::vec conv_to_normal(
     arma::vec const& y,

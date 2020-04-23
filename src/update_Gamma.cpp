@@ -15,7 +15,8 @@ using namespace Rcpp;
 //' @param v0V0 v0 * hyperparameter giving scale matrix for inverse Wishart sample
 //' 
 //' @return sampled correlation matrix
-//' @export
+//' @keywords internal
+//' @noRd
 // [[Rcpp::export]]
 arma::mat update_Gamma (
   arma::mat const& Z,

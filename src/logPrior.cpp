@@ -17,7 +17,8 @@ using namespace Rcpp;
 //' @param n0 historical data sample size
 //' 
 //' @return scalar giving log prior density
-//' @export
+//' @keywords internal
+//' @noRd
 // [[Rcpp::export]]
 double logPowerPrior_cpp (
   arma::vec const& y0,
@@ -95,7 +96,8 @@ double logPowerPrior_cpp (
 //' @param gamma0 rate parameter for inverse dispersion
 //' @param p dimension of \code{beta}
 //' @return scalar giving log prior joint density
-//' @export
+//' @keywords internal
+//' @noRd
 // [[Rcpp::export]]
 double logInitPrior_cpp ( 
   arma::vec const& beta,

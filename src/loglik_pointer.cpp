@@ -188,7 +188,8 @@ XPtr<loglikPtr> putLoglikPtrInXPtr( std::string distname ) {
 //' @param distname name of distribution as a string. Must be one of \code{ c ( "gaussian", "Gamma", "poisson", "binomial" ) ) }
 //' 
 //' @return scalar giving log likelihood
-//' @export
+//' @keywords internal
+//' @noRd
 // [[Rcpp::export]]
 double loglik_cpp(
     const arma::vec& y,

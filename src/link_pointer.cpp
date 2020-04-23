@@ -156,7 +156,8 @@ XPtr<linkPtr> putLinkPtrInXPtr( std::string linkname ) {
 //' 
 //' 
 //' @return \code{vector} applying inverse link function to \code{eta}
-//' @export
+//' @keywords internal
+//' @noRd
 // [[Rcpp::export]]
 arma::vec linkinv_cpp( arma::vec const& eta, std::string const& linkname ) {
   XPtr<linkPtr> xpfun = putLinkPtrInXPtr( linkname );

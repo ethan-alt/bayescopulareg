@@ -100,7 +100,8 @@ XPtr<zPtr> putzPtrInXPtr( std::string distname ) {
 //' @param j index of which column of Z to update, an integer between 0 and J-1
 //' 
 //' @return vector applying CDF to \eqn{ y \mid X, \beta, \phi }
-//' @export
+//' @keywords internal
+//' @noRd
 // [[Rcpp::export]]
 arma::mat update_Z (
     arma::vec const& y,

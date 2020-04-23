@@ -17,7 +17,8 @@ using namespace Rcpp;
 //' @param J number of endpoints
 //' 
 //' @return a \eqn{n \times J} matrix of samples from the predictive posterior density
-//' @export
+//' @keywords internal
+//' @noRd
 // [[Rcpp::export]]
 arma::mat copula_predict (
   List const& Xlist,
@@ -65,7 +66,8 @@ arma::mat copula_predict (
 //' @param M number of samples
 //' 
 //' @return a \eqn{n \times J} matrix of samples from the predictive posterior density
-//' @export
+//' @keywords internal
+//' @noRd
 // [[Rcpp::export]]
 List copula_predict_all (
   List const& Xlistlist,

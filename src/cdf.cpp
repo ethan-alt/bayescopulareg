@@ -135,7 +135,8 @@ XPtr<cdfPtr> putCdfPtrInXPtr( std::string distname ) {
 //' @param n number of observations
 //' 
 //' @return vector applying CDF to \eqn{ y \mid X, \beta, \phi }
-//' @export
+//' @keywords internal
+//' @noRd
 // [[Rcpp::export]]
 arma::vec cdf_cpp(
     arma::vec const& y,

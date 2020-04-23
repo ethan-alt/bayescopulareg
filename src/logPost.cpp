@@ -170,7 +170,8 @@ XPtr<logPostPtr> putlogPostPtrInXPtr( std::string distname ) {
 //' @param n0 historical data sample size
 //' 
 //' @return scalar giving log posterior density for (beta, phi)
-//' @export
+//' @keywords internal
+//' @noRd
 // [[Rcpp::export]]
 double logPost (
     arma::vec const& y,
