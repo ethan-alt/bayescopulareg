@@ -25,7 +25,7 @@
 #' @param v0 An integer scalar giving degrees of freedom for Inverse Wishart prior. If \code{NULL} defaults to J + 2
 #' @param V0 An integer giving inverse scale parameter for Inverse Wishart prior. If \code{NULL} defaults to \code{diag(.001, J)}
 #' @param beta0 A \eqn{J}-dimensional \code{list} giving starting values for random walk Metropolis on the regression coefficients. If \code{NULL}, defaults to the GLM MLE
-#' @param phi0  A \eqn{J}-dimensional \code{vector} giving initial values for dispersion parameters. If \code{NULL}. Dispersion parameters will alwyas return 1 for binomial and Poisson models.
+#' @param phi0  A \eqn{J}-dimensional \code{vector} giving initial values for dispersion parameters. If \code{NULL}. Dispersion parameters will alwyas return 1 for binomial and Poisson models
 #' 
 #' @return A named list. 
 #' \code{["betasample"]} gives a \eqn{J}-dimensional list of sampled coefficients as matrices. 
@@ -34,8 +34,40 @@
 #' \code{["betaaccept"]} gives a \eqn{M \times J} matrix where each row indicates whether the proposal for the regression coefficient was accepted.
 #' \code{["phiaccept"]} gives a \eqn{M \times J} matrix where each row indicates whether the proposal for the dispersion parameter was accepted
 #' 
+#' @examples 
+#' set.seed(1234)
+#' n <- 100
+#' M <- 1000
+#' 
+#' x <- runif(n, 1, 2)
+#' y1 <- 0.25 * x + rnorm(100)
+#' y2 <- rpois(n, exp(0.25 * x))
+#' 
+#' formula.list <- list(y1 ~ 0 + x, y2 ~ 0 + x)
+#' family.list <- list(gaussian(), poisson())
+#' data = data.frame(y1, y2, x)
+#' 
+#' ## Perform copula regression sampling with default
+#' ## (noninformative) priors
+#' sample <- mvbayesglm(
+#'   formula.list, family.list, data, M = M
+#' )
+#' ## Regression coefficients
+#' summary(do.call(cbind, sample$betasample))
+#' 
+#' ## Dispersion parameters
+#' summary(sample$phisample)
+#' 
+#' ## Posterior mean correlation matrix
+#' apply(sample$Gammasample, c(1,2), mean)
+#' 
+#' ## Fraction of accepted betas
+#' colMeans(sample$betaaccept)
+#' 
+#' ## Fraction of accepted dispersion parameters
+#' colMeans(sample$phiaccept)
 #' @export
-sample_copula <- function(
+mvbayesglm <- function(
   formula.list,
   family.list,
   data,
