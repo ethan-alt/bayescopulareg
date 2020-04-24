@@ -230,7 +230,7 @@ bayescopulaglm_wrapper <- function(
     }
   }
   famlist <- sapply(family.list, function(f)f$family)
-  if ( !( famlist %in% c('gaussian', 'poisson', 'Gamma', 'binomial') ) ) {
+  if ( any( !( famlist %in% c('gaussian', 'poisson', 'Gamma', 'binomial') ) ) ) {
     stop("Family must be one of gaussian, poisson, Gamma, or binomial")
   }
   
