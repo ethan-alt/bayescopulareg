@@ -1,7 +1,8 @@
 #' @examples
 set.seed(123)
 n <- 500
-M <- 10000
+M <- 100
+thin <- 50
 
 x <- runif(n, 1, 2)
 y1 <- 0.25 * x + rnorm(100)
@@ -15,15 +16,14 @@ data = data.frame(y1, y2, y3, y4, x)
 
 ## Perform copula regression sampling with default
 ## (noninformative) priors
-sample <- mvbayesglm(
-  formula.list, family.list, data, M = M
+sample <- bayescopulaglm(
+  formula.list, family.list, data, M = M, thin = thin
 )
 
-postmean <- function(smpl, burn = 1000) {
+postmean <- function(smpl) {
   post.beta <- do.call(cbind, smpl$betasample)
-  post.beta <- post.beta[-(1:burn), ]
   post.beta <- colMeans(post.beta)
-  post.disp <- colMeans(smpl$phisample[-(1:burn), ])
+  post.disp <- colMeans(smpl$phisample)
   res <- rbind('beta' = post.beta, 'dispersion' = post.disp)
   return(res)
 }
@@ -36,7 +36,7 @@ get_params <- function(fit) {
   c('beta' = fit$coefficients, 'dispersion' = summary(fit)$dispersion)
 }
 sapply(glm.list, get_params)
-postmean(sample, burn = 2000)
+postmean(sample)
 apply(sample$Gammasample, c(1, 2), mean)
 # 
 # 
