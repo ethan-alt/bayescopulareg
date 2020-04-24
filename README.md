@@ -1,6 +1,7 @@
 # bayescopulareg
-<<<<<<< HEAD
-Bayesian analysis of multivariate generalized linear models via copulas
-=======
-Bayesian analysis of multivariate generalized linear models via copulas.
->>>>>>> bc5ce0516b89727c4dcd960df6249b56798ee923
+## Bayesian analysis of multivariate generalized linear models via copulas
+
+This package contains two main functions. 
+  * `bayescopulaglm` samples from the posterior of a multivariate generalized linear model (currently supported families are `poisson`, `gaussian`, `binomial`, and `gamma`.
+  * `predict.bayescopulaglm` which samples from the predictive posterior density of a `bayescopulaglm` object.
+  
