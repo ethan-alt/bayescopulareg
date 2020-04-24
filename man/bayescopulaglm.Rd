@@ -55,7 +55,7 @@ bayescopulaglm(
 
 \item{beta0}{A \eqn{J}-dimensional \code{list} giving starting values for random walk Metropolis on the regression coefficients. If \code{NULL}, defaults to the GLM MLE}
 
-\item{phi0}{A \eqn{J}-dimensional \code{vector} giving initial values for dispersion parameters. If \code{NULL}. Dispersion parameters will alwyas return 1 for binomial and Poisson models}
+\item{phi0}{A \eqn{J}-dimensional \code{vector} giving initial values for dispersion parameters. If \code{NULL}. Dispersion parameters will always return 1 for binomial and Poisson models}
 
 \item{M}{Number of desired posterior samples after burn-in and thinning}
 

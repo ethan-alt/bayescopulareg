@@ -21,7 +21,7 @@
 #' @param v0 An integer scalar giving degrees of freedom for Inverse Wishart prior. If \code{NULL} defaults to J + 2
 #' @param V0 An integer giving inverse scale parameter for Inverse Wishart prior. If \code{NULL} defaults to \code{diag(.001, J)}
 #' @param beta0 A \eqn{J}-dimensional \code{list} giving starting values for random walk Metropolis on the regression coefficients. If \code{NULL}, defaults to the GLM MLE
-#' @param phi0  A \eqn{J}-dimensional \code{vector} giving initial values for dispersion parameters. If \code{NULL}. Dispersion parameters will alwyas return 1 for binomial and Poisson models
+#' @param phi0  A \eqn{J}-dimensional \code{vector} giving initial values for dispersion parameters. If \code{NULL}. Dispersion parameters will always return 1 for binomial and Poisson models
 #' @param M Number of desired posterior samples after burn-in and thinning
 #' @param burnin burn-in parameter
 #' @param thin post burn-in thinning parameter
@@ -154,7 +154,7 @@ bayescopulaglm <- function(
 #' @param M Number of desired posterior samples
 #' @param histdata \emph{Optional} historical data set for power prior on \eqn{\beta, \phi}
 #' @param b0 \emph{Optional} power prior hyperparameter
-#' @param c0 A \eqn{J}-dimensional vector for \eqn{\beta \mid \phi} prior covvariance: \eqn{\text{Cov}(\beta \mid \phi) = c_0 \phi I_n }. If \code{NULL}, sets \eqn{c_0 = 10000} for each endpoint
+#' @param c0 A \eqn{J}-dimensional vector for \eqn{\beta \mid \phi} prior covariance: \eqn{\text{Cov}(\beta \mid \phi) = c_0 \phi I_n }. If \code{NULL}, sets \eqn{c_0 = 10000} for each endpoint
 #' @param alpha0 A \eqn{J}-dimensional vector giving the shape hyperparameter for each dispersion parameter on the prior on \eqn{\phi}. If \code{NULL} sets \eqn{\alpha_0 = .01} for each dispersion parameter
 #' @param gamma0 A \eqn{J}-dimensional vector giving the rate hyperparameter for each dispersion parameter on the prior on \eqn{\phi}. If \code{NULL} sets \eqn{\alpha_0 = .01} for each dispersion parameter
 #' @param Gamma0 Initial value for correlation matrix. If \code{NULL} defaults to the correlation matrix from the responses.
