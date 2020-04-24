@@ -61,7 +61,7 @@ bayescopulaglm(
 
 \item{burnin}{burn-in parameter}
 
-\item{thin}{thinning parameter}
+\item{thin}{post burn-in thinning parameter}
 
 \item{adaptive}{logical indicating whether to use adaptive random walk MCMC to estimate parameters. This takes longer, but generally has a better acceptance rate}
 }

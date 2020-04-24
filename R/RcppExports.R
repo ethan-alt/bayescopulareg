@@ -400,8 +400,8 @@ loglik_cpp <- function(y, X, beta, phi, distname, linkname, n) {
 #' @return sampled correlation matrix
 #' @keywords internal
 #' @noRd
-sample_copula_cpp <- function(ymat, Xlist, distnamevec, linknamevec, c0vec, S0betalist, sigma0logphivec, alpha0vec, gamma0vec, Gamma, v0, V0, b0, y0mat, X0list, M, beta0list, phi0vec) {
-    .Call('_glmPOS_sample_copula_cpp', PACKAGE = 'glmPOS', ymat, Xlist, distnamevec, linknamevec, c0vec, S0betalist, sigma0logphivec, alpha0vec, gamma0vec, Gamma, v0, V0, b0, y0mat, X0list, M, beta0list, phi0vec)
+sample_copula_cpp <- function(ymat, Xlist, distnamevec, linknamevec, c0vec, S0betalist, sigma0logphivec, alpha0vec, gamma0vec, Gamma, v0, V0, b0, y0mat, X0list, M, beta0list, phi0vec, thin) {
+    .Call('_glmPOS_sample_copula_cpp', PACKAGE = 'glmPOS', ymat, Xlist, distnamevec, linknamevec, c0vec, S0betalist, sigma0logphivec, alpha0vec, gamma0vec, Gamma, v0, V0, b0, y0mat, X0list, M, beta0list, phi0vec, thin)
 }
 
 #' Update correlation matrix

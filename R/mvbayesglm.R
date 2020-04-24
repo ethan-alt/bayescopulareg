@@ -24,7 +24,7 @@
 #' @param phi0  A \eqn{J}-dimensional \code{vector} giving initial values for dispersion parameters. If \code{NULL}. Dispersion parameters will alwyas return 1 for binomial and Poisson models
 #' @param M Number of desired posterior samples after burn-in and thinning
 #' @param burnin burn-in parameter
-#' @param thin thinning parameter
+#' @param thin post burn-in thinning parameter
 #' @param adaptive logical indicating whether to use adaptive random walk MCMC to estimate parameters. This takes longer, but generally has a better acceptance rate
 #' 
 #' @return A named list. 
@@ -48,7 +48,7 @@
 #' 
 #' ## Perform copula regression sampling with default
 #' ## (noninformative) priors
-#' sample <- mvbayesglm(
+#' sample <- bayescopulaglm(
 #'   formula.list, family.list, data, M = M
 #' )
 #' ## Regression coefficients
@@ -66,7 +66,7 @@
 #' ## Fraction of accepted dispersion parameters
 #' colMeans(sample$phiaccept)
 #' @export
-mvbayesglm <- function(
+bayescopulaglm <- function(
   formula.list,
   family.list,
   data,
@@ -92,10 +92,10 @@ mvbayesglm <- function(
   if ( burnin > 0 ) {
     
     ## burn-in sample
-    smpl <- mvbayesglm_wrapper(
+    smpl <- bayescopulaglm_wrapper(
       formula.list, family.list, data, M = burnin, histdata, b0,
       c0, alpha0, gamma0, Gamma0, S0beta, sigma0logphi, v0, V0,
-      beta0, phi0
+      beta0, phi0, thin = 1
     )
     
     ## Obtain starting values for new chain as last values for burn chain
@@ -119,22 +119,16 @@ mvbayesglm <- function(
   
   ## Now, obtain post burn-in sampling accounting for thinning
   beta0 <- lapply(beta0, as.numeric)
-  smpl <- mvbayesglm_wrapper(
-    formula.list, family.list, data, M = thin * M, histdata, b0,
+  smpl <- bayescopulaglm_wrapper(
+    formula.list, family.list, data, M = M, histdata, b0,
     c0, alpha0, gamma0, Gamma0, S0beta, sigma0logphi, v0, V0,
-    beta0, phi0
+    beta0, phi0, thin = thin
   )
   
-  
-  ## Apply thinning
-  thin.indx <- seq(from = 1, to = thin * M, by = thin)
-  smpl$betasample <- lapply( smpl$betasample, function(x) x[thin.indx, , drop = F] )
-  smpl$phisample <- smpl$phisample[thin.indx, , drop = F]
-  test <- smpl$Gammasample[, , thin.indx]
-  
+  ## Store formula.list and family.list for easy passing onto other functions e.g. predict
   smpl$formula.list <- formula.list
   smpl$family.list <- family.list
-  class(smpl) <- c(class(smpl), 'mvbayesglm')
+  class(smpl) <- c(class(smpl), 'bayescopulaglm')
   
   return(smpl)
 }
@@ -171,6 +165,7 @@ mvbayesglm <- function(
 #' @param V0 An integer giving inverse scale parameter for Inverse Wishart prior. If \code{NULL} defaults to \code{diag(.001, J)}
 #' @param beta0 A \eqn{J}-dimensional \code{list} giving starting values for random walk Metropolis on the regression coefficients. If \code{NULL}, defaults to the GLM MLE
 #' @param phi0  A \eqn{J}-dimensional \code{vector} giving initial values for dispersion parameters. If \code{NULL}. Dispersion parameters will alwyas return 1 for binomial and Poisson models
+#' @param thin thinning parameter
 #' 
 #' @return A named list. 
 #' \code{["betasample"]} gives a \eqn{J}-dimensional list of sampled coefficients as matrices. 
@@ -180,7 +175,7 @@ mvbayesglm <- function(
 #' \code{["phiaccept"]} gives a \eqn{M \times J} matrix where each row indicates whether the proposal for the dispersion parameter was accepted
 #' @noRd
 #' @keywords internal
-mvbayesglm_wrapper <- function(
+bayescopulaglm_wrapper <- function(
   formula.list,
   family.list,
   data,
@@ -196,7 +191,8 @@ mvbayesglm_wrapper <- function(
   v0 = NULL,
   V0 = NULL,
   beta0 = NULL,
-  phi0 = NULL
+  phi0 = NULL,
+  thin = 1
 ) {
   ##
   ## define functions to get dependent variable and design matrix from formulas;
@@ -355,7 +351,7 @@ mvbayesglm_wrapper <- function(
   ## Call sample_copula_cpp function
   smpl <- sample_copula_cpp ( 
     ymat, Xlist, distnamevec, linknamevec, c0, S0beta, sigma0logphi,
-    alpha0, gamma0, Gamma0, v0, V0, b0, y0mat, X0list, M, beta0, phi0
+    alpha0, gamma0, Gamma0, v0, V0, b0, y0mat, X0list, M, beta0, phi0, thin
   )
   
   ## Replace column names in smpl$betasample with corresponding name of regression coefficient

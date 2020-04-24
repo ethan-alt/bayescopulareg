@@ -49,7 +49,8 @@ List sample_copula_cpp (
     List const& X0list,
     int const& M,
     List beta0list,
-    arma::vec phi0vec
+    arma::vec phi0vec,
+    int const& thin
 ) {
   // get number of endpoints and number of observations
   int J = ymat.n_cols;
@@ -96,7 +97,7 @@ List sample_copula_cpp (
   }
   
   // Loop through the M iterations
-  for ( int m = 0; m < M; m++ ) {
+  for ( int m = 0; m < thin * M; m++ ) {
     
     // Store gamma inverse
     Gammainv = arma::inv_sympd(Gamma);
@@ -134,18 +135,24 @@ List sample_copula_cpp (
       
       
       // Store samples
-      arma::mat betamatj = betasample[j];
-      betamatj.row(m) = betanew.t();
-      betasample[j] = betamatj;
-      
-      phisample( m, j ) = phinew;
-      betaacceptmat( m, j ) = accept(0);
-      phiacceptmat( m, j ) = accept(1);
+      if ( m % thin == 0 ) {
+        int i = m / thin;
+        arma::mat betamatj = betasample[j];
+        betamatj.row(i) = betanew.t();
+        betasample[j] = betamatj;
+        
+        phisample( i, j ) = phinew;
+        betaacceptmat( i, j ) = accept(0);
+        phiacceptmat( i, j ) = accept(1);
+      }
     }
     
     // Update Gamma based on updated parameters and Z
     arma::mat Gamma = update_Gamma( Z, n, v0, v0V0 );
-    Gammasample.slice(m) = Gamma;
+    if ( m % thin == 0 ) {
+      int i = m / thin;
+      Gammasample.slice(i) = Gamma;
+    }
   }
   
   

@@ -217,8 +217,8 @@ BEGIN_RCPP
 END_RCPP
 }
 // sample_copula_cpp
-List sample_copula_cpp(arma::mat const& ymat, List const& Xlist, std::vector<std::string> const& distnamevec, std::vector<std::string> const& linknamevec, arma::vec const& c0vec, List const& S0betalist, arma::vec sigma0logphivec, arma::vec const& alpha0vec, arma::vec const& gamma0vec, arma::mat Gamma, int const& v0, arma::mat const& V0, double const& b0, arma::mat const& y0mat, List const& X0list, int const& M, List beta0list, arma::vec phi0vec);
-RcppExport SEXP _glmPOS_sample_copula_cpp(SEXP ymatSEXP, SEXP XlistSEXP, SEXP distnamevecSEXP, SEXP linknamevecSEXP, SEXP c0vecSEXP, SEXP S0betalistSEXP, SEXP sigma0logphivecSEXP, SEXP alpha0vecSEXP, SEXP gamma0vecSEXP, SEXP GammaSEXP, SEXP v0SEXP, SEXP V0SEXP, SEXP b0SEXP, SEXP y0matSEXP, SEXP X0listSEXP, SEXP MSEXP, SEXP beta0listSEXP, SEXP phi0vecSEXP) {
+List sample_copula_cpp(arma::mat const& ymat, List const& Xlist, std::vector<std::string> const& distnamevec, std::vector<std::string> const& linknamevec, arma::vec const& c0vec, List const& S0betalist, arma::vec sigma0logphivec, arma::vec const& alpha0vec, arma::vec const& gamma0vec, arma::mat Gamma, int const& v0, arma::mat const& V0, double const& b0, arma::mat const& y0mat, List const& X0list, int const& M, List beta0list, arma::vec phi0vec, int const& thin);
+RcppExport SEXP _glmPOS_sample_copula_cpp(SEXP ymatSEXP, SEXP XlistSEXP, SEXP distnamevecSEXP, SEXP linknamevecSEXP, SEXP c0vecSEXP, SEXP S0betalistSEXP, SEXP sigma0logphivecSEXP, SEXP alpha0vecSEXP, SEXP gamma0vecSEXP, SEXP GammaSEXP, SEXP v0SEXP, SEXP V0SEXP, SEXP b0SEXP, SEXP y0matSEXP, SEXP X0listSEXP, SEXP MSEXP, SEXP beta0listSEXP, SEXP phi0vecSEXP, SEXP thinSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -240,7 +240,8 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int const& >::type M(MSEXP);
     Rcpp::traits::input_parameter< List >::type beta0list(beta0listSEXP);
     Rcpp::traits::input_parameter< arma::vec >::type phi0vec(phi0vecSEXP);
-    rcpp_result_gen = Rcpp::wrap(sample_copula_cpp(ymat, Xlist, distnamevec, linknamevec, c0vec, S0betalist, sigma0logphivec, alpha0vec, gamma0vec, Gamma, v0, V0, b0, y0mat, X0list, M, beta0list, phi0vec));
+    Rcpp::traits::input_parameter< int const& >::type thin(thinSEXP);
+    rcpp_result_gen = Rcpp::wrap(sample_copula_cpp(ymat, Xlist, distnamevec, linknamevec, c0vec, S0betalist, sigma0logphivec, alpha0vec, gamma0vec, Gamma, v0, V0, b0, y0mat, X0list, M, beta0list, phi0vec, thin));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -323,7 +324,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_glmPOS_logPowerPrior_cpp", (DL_FUNC) &_glmPOS_logPowerPrior_cpp, 8},
     {"_glmPOS_logInitPrior_cpp", (DL_FUNC) &_glmPOS_logInitPrior_cpp, 6},
     {"_glmPOS_loglik_cpp", (DL_FUNC) &_glmPOS_loglik_cpp, 7},
-    {"_glmPOS_sample_copula_cpp", (DL_FUNC) &_glmPOS_sample_copula_cpp, 18},
+    {"_glmPOS_sample_copula_cpp", (DL_FUNC) &_glmPOS_sample_copula_cpp, 19},
     {"_glmPOS_update_Gamma", (DL_FUNC) &_glmPOS_update_Gamma, 4},
     {"_glmPOS_update_Z", (DL_FUNC) &_glmPOS_update_Z, 10},
     {"_glmPOS_update_params", (DL_FUNC) &_glmPOS_update_params, 21},
