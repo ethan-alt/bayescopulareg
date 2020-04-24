@@ -18,7 +18,7 @@
 #' @keywords internal
 #' @noRd
 cdf_cpp <- function(y, X, beta, phi, distname, linkname, n) {
-    .Call('_glmPOS_cdf_cpp', PACKAGE = 'glmPOS', y, X, beta, phi, distname, linkname, n)
+    .Call('_bayescopulareg_cdf_cpp', PACKAGE = 'bayescopulareg', y, X, beta, phi, distname, linkname, n)
 }
 
 #' Convert to Normal
@@ -38,11 +38,11 @@ cdf_cpp <- function(y, X, beta, phi, distname, linkname, n) {
 #' @keywords internal
 #' @noRd
 conv_to_normal <- function(y, X, beta, phi, distname, linkname, n) {
-    .Call('_glmPOS_conv_to_normal', PACKAGE = 'glmPOS', y, X, beta, phi, distname, linkname, n)
+    .Call('_bayescopulareg_conv_to_normal', PACKAGE = 'bayescopulareg', y, X, beta, phi, distname, linkname, n)
 }
 
 condnormal_cpp <- function(Z, Gamma, j) {
-    .Call('_glmPOS_condnormal_cpp', PACKAGE = 'glmPOS', Z, Gamma, j)
+    .Call('_bayescopulareg_condnormal_cpp', PACKAGE = 'bayescopulareg', Z, Gamma, j)
 }
 
 #' Posterior predictive sample of copula GLM
@@ -62,7 +62,7 @@ condnormal_cpp <- function(Z, Gamma, j) {
 #' @keywords internal
 #' @noRd
 copula_predict <- function(Xlist, distnamevec, linknamevec, Gamma, betasample, phisample, n, J) {
-    .Call('_glmPOS_copula_predict', PACKAGE = 'glmPOS', Xlist, distnamevec, linknamevec, Gamma, betasample, phisample, n, J)
+    .Call('_bayescopulareg_copula_predict', PACKAGE = 'bayescopulareg', Xlist, distnamevec, linknamevec, Gamma, betasample, phisample, n, J)
 }
 
 #' List of posterior predictive samples of copula GLM
@@ -83,7 +83,7 @@ copula_predict <- function(Xlist, distnamevec, linknamevec, Gamma, betasample, p
 #' @keywords internal
 #' @noRd
 copula_predict_all <- function(Xlistlist, distnamevec, linknamevec, betasamplelist, phisamplemat, Gammaarray, n, J, M) {
-    .Call('_glmPOS_copula_predict_all', PACKAGE = 'glmPOS', Xlistlist, distnamevec, linknamevec, betasamplelist, phisamplemat, Gammaarray, n, J, M)
+    .Call('_bayescopulareg_copula_predict_all', PACKAGE = 'bayescopulareg', Xlistlist, distnamevec, linknamevec, betasamplelist, phisamplemat, Gammaarray, n, J, M)
 }
 
 #' Inverse CDF of GLM
@@ -102,7 +102,7 @@ copula_predict_all <- function(Xlistlist, distnamevec, linknamevec, betasampleli
 #' @keywords internal
 #' @noRd
 invcdf_cpp <- function(u, X, beta, phi, distname, linkname, n) {
-    .Call('_glmPOS_invcdf_cpp', PACKAGE = 'glmPOS', u, X, beta, phi, distname, linkname, n)
+    .Call('_bayescopulareg_invcdf_cpp', PACKAGE = 'bayescopulareg', u, X, beta, phi, distname, linkname, n)
 }
 
 #' Sample GLM copula response variable
@@ -121,7 +121,7 @@ invcdf_cpp <- function(u, X, beta, phi, distname, linkname, n) {
 #' @keywords internal
 #' @noRd
 sample_y <- function(z, X, beta, phi, distname, linkname, n) {
-    .Call('_glmPOS_sample_y', PACKAGE = 'glmPOS', z, X, beta, phi, distname, linkname, n)
+    .Call('_bayescopulareg_sample_y', PACKAGE = 'bayescopulareg', z, X, beta, phi, distname, linkname, n)
 }
 
 #' Expit
@@ -210,7 +210,7 @@ NULL
 #' @keywords internal
 #' @noRd
 linkinv_cpp <- function(eta, linkname) {
-    .Call('_glmPOS_linkinv_cpp', PACKAGE = 'glmPOS', eta, linkname)
+    .Call('_bayescopulareg_linkinv_cpp', PACKAGE = 'bayescopulareg', eta, linkname)
 }
 
 #' Log joint posterior density for (beta, phi)
@@ -241,7 +241,7 @@ linkinv_cpp <- function(eta, linkname) {
 #' @keywords internal
 #' @noRd
 logPost <- function(y, X, beta, phi, Z, Gammainv, distname, linkname, n, j, J, p, c0, alpha0, gamma0, b0, y0, X0, n0) {
-    .Call('_glmPOS_logPost', PACKAGE = 'glmPOS', y, X, beta, phi, Z, Gammainv, distname, linkname, n, j, J, p, c0, alpha0, gamma0, b0, y0, X0, n0)
+    .Call('_bayescopulareg_logPost', PACKAGE = 'bayescopulareg', y, X, beta, phi, Z, Gammainv, distname, linkname, n, j, J, p, c0, alpha0, gamma0, b0, y0, X0, n0)
 }
 
 #' Power prior for \eqn{(\beta, \phi)}
@@ -262,7 +262,7 @@ logPost <- function(y, X, beta, phi, Z, Gammainv, distname, linkname, n, j, J, p
 #' @keywords internal
 #' @noRd
 logPowerPrior_cpp <- function(y0, X0, beta, phi, b0, distname, linkname, n0) {
-    .Call('_glmPOS_logPowerPrior_cpp', PACKAGE = 'glmPOS', y0, X0, beta, phi, b0, distname, linkname, n0)
+    .Call('_bayescopulareg_logPowerPrior_cpp', PACKAGE = 'bayescopulareg', y0, X0, beta, phi, b0, distname, linkname, n0)
 }
 
 #' Initial validation prior for (beta, phi)
@@ -282,7 +282,7 @@ logPowerPrior_cpp <- function(y0, X0, beta, phi, b0, distname, linkname, n0) {
 #' @keywords internal
 #' @noRd
 logInitPrior_cpp <- function(beta, phi, c0, alpha0, gamma0, p) {
-    .Call('_glmPOS_logInitPrior_cpp', PACKAGE = 'glmPOS', beta, phi, c0, alpha0, gamma0, p)
+    .Call('_bayescopulareg_logInitPrior_cpp', PACKAGE = 'bayescopulareg', beta, phi, c0, alpha0, gamma0, p)
 }
 
 #' Gaussian log likelihood
@@ -371,7 +371,7 @@ NULL
 #' @keywords internal
 #' @noRd
 loglik_cpp <- function(y, X, beta, phi, distname, linkname, n) {
-    .Call('_glmPOS_loglik_cpp', PACKAGE = 'glmPOS', y, X, beta, phi, distname, linkname, n)
+    .Call('_bayescopulareg_loglik_cpp', PACKAGE = 'bayescopulareg', y, X, beta, phi, distname, linkname, n)
 }
 
 #' MCMC sample of copula GLM
@@ -401,7 +401,7 @@ loglik_cpp <- function(y, X, beta, phi, distname, linkname, n) {
 #' @keywords internal
 #' @noRd
 sample_copula_cpp <- function(ymat, Xlist, distnamevec, linknamevec, c0vec, S0betalist, sigma0logphivec, alpha0vec, gamma0vec, Gamma, v0, V0, b0, y0mat, X0list, M, beta0list, phi0vec, thin) {
-    .Call('_glmPOS_sample_copula_cpp', PACKAGE = 'glmPOS', ymat, Xlist, distnamevec, linknamevec, c0vec, S0betalist, sigma0logphivec, alpha0vec, gamma0vec, Gamma, v0, V0, b0, y0mat, X0list, M, beta0list, phi0vec, thin)
+    .Call('_bayescopulareg_sample_copula_cpp', PACKAGE = 'bayescopulareg', ymat, Xlist, distnamevec, linknamevec, c0vec, S0betalist, sigma0logphivec, alpha0vec, gamma0vec, Gamma, v0, V0, b0, y0mat, X0list, M, beta0list, phi0vec, thin)
 }
 
 #' Update correlation matrix
@@ -418,7 +418,7 @@ sample_copula_cpp <- function(ymat, Xlist, distnamevec, linknamevec, c0vec, S0be
 #' @keywords internal
 #' @noRd
 update_Gamma <- function(Z, n, v0, v0V0) {
-    .Call('_glmPOS_update_Gamma', PACKAGE = 'glmPOS', Z, n, v0, v0V0)
+    .Call('_bayescopulareg_update_Gamma', PACKAGE = 'bayescopulareg', Z, n, v0, v0V0)
 }
 
 #' Get updated Z
@@ -440,7 +440,7 @@ update_Gamma <- function(Z, n, v0, v0V0) {
 #' @keywords internal
 #' @noRd
 update_Z <- function(y, X, beta, phi, Z, Gamma, distname, linkname, n, j) {
-    .Call('_glmPOS_update_Z', PACKAGE = 'glmPOS', y, X, beta, phi, Z, Gamma, distname, linkname, n, j)
+    .Call('_bayescopulareg_update_Z', PACKAGE = 'bayescopulareg', y, X, beta, phi, Z, Gamma, distname, linkname, n, j)
 }
 
 #' @keywords internal
@@ -478,6 +478,6 @@ NULL
 #' @keywords internal
 #' @noRd
 update_params <- function(y, X, beta, phi, Z, Gammainv, c0, S0beta, sigma0logphi, distname, linkname, n, j, J, p, alpha0, gamma0, b0, y0, X0, n0) {
-    .Call('_glmPOS_update_params', PACKAGE = 'glmPOS', y, X, beta, phi, Z, Gammainv, c0, S0beta, sigma0logphi, distname, linkname, n, j, J, p, alpha0, gamma0, b0, y0, X0, n0)
+    .Call('_bayescopulareg_update_params', PACKAGE = 'bayescopulareg', y, X, beta, phi, Z, Gammainv, c0, S0beta, sigma0logphi, distname, linkname, n, j, J, p, alpha0, gamma0, b0, y0, X0, n0)
 }
 

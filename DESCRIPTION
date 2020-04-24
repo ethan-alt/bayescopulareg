@@ -1,15 +1,17 @@
-Package: glmPOS
+Package: bayescopulareg
 Type: Package
-Title: What the Package Does Using Title Case
-Version: 1.0
+Title: Bayesian Copula Regression
+Version: 0.1.0
 Date: 2020-03-30
-Author: Your Name
-Maintainer: Your Name <your@email.com>
-Description: More details about what the package does. See
-             <http://cran.r-project.org/doc/manuals/r-release/R-exts.html#The-DESCRIPTION-file> for details on how
-             to write this part.
+Author: Ethan Alt
+Maintainer: Ethan Alt <ethanalt@live.unc.edu>
+Description: Tools for Bayesian copula generalized linear models (GLMs). 
+             Includes posterior sampling and predictive posterior sampling. 
+            Methods based on Pitt, Chan, and Kohn (2006) <doi:10.1093/biomet/93.3.537>. 
+            Prior for correlation matrix based on Hoff (2007) <doi:10.1214/07-AOAS107>.
+Depends: R (>= 3.6.0)
 License: GPL (>= 2)
-Imports: Rcpp (>= 1.0.3)
+Imports: Rcpp (>= 1.0.3), stats
 LinkingTo: Rcpp, RcppArmadillo, RcppDist
 RoxygenNote: 7.1.0
 Encoding: UTF-8

@@ -1,4 +1,4 @@
-#' @useDynLib glmPOS
+#' @useDynLib bayescopulareg
 #' @importFrom Rcpp evalCpp
 #' @keywords internal
 "_PACKAGE"

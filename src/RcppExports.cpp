@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // cdf_cpp
 arma::vec cdf_cpp(arma::vec const& y, arma::mat const& X, arma::vec const& beta, double const& phi, std::string const& distname, const std::string& linkname, const int& n);
-RcppExport SEXP _glmPOS_cdf_cpp(SEXP ySEXP, SEXP XSEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP nSEXP) {
+RcppExport SEXP _bayescopulareg_cdf_cpp(SEXP ySEXP, SEXP XSEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -25,7 +25,7 @@ END_RCPP
 }
 // conv_to_normal
 arma::vec conv_to_normal(arma::vec const& y, arma::mat const& X, arma::vec const& beta, double const& phi, std::string const& distname, std::string const& linkname, int const& n);
-RcppExport SEXP _glmPOS_conv_to_normal(SEXP ySEXP, SEXP XSEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP nSEXP) {
+RcppExport SEXP _bayescopulareg_conv_to_normal(SEXP ySEXP, SEXP XSEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -42,7 +42,7 @@ END_RCPP
 }
 // condnormal_cpp
 List condnormal_cpp(arma::mat Z, arma::mat Gamma, int const& j);
-RcppExport SEXP _glmPOS_condnormal_cpp(SEXP ZSEXP, SEXP GammaSEXP, SEXP jSEXP) {
+RcppExport SEXP _bayescopulareg_condnormal_cpp(SEXP ZSEXP, SEXP GammaSEXP, SEXP jSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -55,7 +55,7 @@ END_RCPP
 }
 // copula_predict
 arma::mat copula_predict(List const& Xlist, std::vector<std::string> const& distnamevec, std::vector<std::string> const& linknamevec, arma::mat const& Gamma, List const& betasample, arma::vec const& phisample, int const& n, int const& J);
-RcppExport SEXP _glmPOS_copula_predict(SEXP XlistSEXP, SEXP distnamevecSEXP, SEXP linknamevecSEXP, SEXP GammaSEXP, SEXP betasampleSEXP, SEXP phisampleSEXP, SEXP nSEXP, SEXP JSEXP) {
+RcppExport SEXP _bayescopulareg_copula_predict(SEXP XlistSEXP, SEXP distnamevecSEXP, SEXP linknamevecSEXP, SEXP GammaSEXP, SEXP betasampleSEXP, SEXP phisampleSEXP, SEXP nSEXP, SEXP JSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -73,7 +73,7 @@ END_RCPP
 }
 // copula_predict_all
 List copula_predict_all(List const& Xlistlist, std::vector<std::string> const& distnamevec, std::vector<std::string> const& linknamevec, List const& betasamplelist, arma::mat const& phisamplemat, arma::cube const& Gammaarray, int const& n, int const& J, int const& M);
-RcppExport SEXP _glmPOS_copula_predict_all(SEXP XlistlistSEXP, SEXP distnamevecSEXP, SEXP linknamevecSEXP, SEXP betasamplelistSEXP, SEXP phisamplematSEXP, SEXP GammaarraySEXP, SEXP nSEXP, SEXP JSEXP, SEXP MSEXP) {
+RcppExport SEXP _bayescopulareg_copula_predict_all(SEXP XlistlistSEXP, SEXP distnamevecSEXP, SEXP linknamevecSEXP, SEXP betasamplelistSEXP, SEXP phisamplematSEXP, SEXP GammaarraySEXP, SEXP nSEXP, SEXP JSEXP, SEXP MSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -92,7 +92,7 @@ END_RCPP
 }
 // invcdf_cpp
 arma::vec invcdf_cpp(arma::vec const& u, arma::mat const& X, arma::vec const& beta, double const& phi, std::string const& distname, const std::string& linkname, const int& n);
-RcppExport SEXP _glmPOS_invcdf_cpp(SEXP uSEXP, SEXP XSEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP nSEXP) {
+RcppExport SEXP _bayescopulareg_invcdf_cpp(SEXP uSEXP, SEXP XSEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -109,7 +109,7 @@ END_RCPP
 }
 // sample_y
 arma::vec sample_y(arma::vec const& z, arma::mat const& X, arma::vec const& beta, double const& phi, std::string const& distname, std::string const& linkname, int const& n);
-RcppExport SEXP _glmPOS_sample_y(SEXP zSEXP, SEXP XSEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP nSEXP) {
+RcppExport SEXP _bayescopulareg_sample_y(SEXP zSEXP, SEXP XSEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -126,7 +126,7 @@ END_RCPP
 }
 // linkinv_cpp
 arma::vec linkinv_cpp(arma::vec const& eta, std::string const& linkname);
-RcppExport SEXP _glmPOS_linkinv_cpp(SEXP etaSEXP, SEXP linknameSEXP) {
+RcppExport SEXP _bayescopulareg_linkinv_cpp(SEXP etaSEXP, SEXP linknameSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -138,7 +138,7 @@ END_RCPP
 }
 // logPost
 double logPost(arma::vec const& y, arma::mat const& X, arma::vec const& beta, double const& phi, arma::mat const& Z, arma::mat const& Gammainv, std::string const& distname, std::string const& linkname, int const& n, int const& j, int const& J, int const& p, double const& c0, double const& alpha0, double const& gamma0, double const& b0, arma::vec const& y0, arma::mat const& X0, int const& n0);
-RcppExport SEXP _glmPOS_logPost(SEXP ySEXP, SEXP XSEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP ZSEXP, SEXP GammainvSEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP nSEXP, SEXP jSEXP, SEXP JSEXP, SEXP pSEXP, SEXP c0SEXP, SEXP alpha0SEXP, SEXP gamma0SEXP, SEXP b0SEXP, SEXP y0SEXP, SEXP X0SEXP, SEXP n0SEXP) {
+RcppExport SEXP _bayescopulareg_logPost(SEXP ySEXP, SEXP XSEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP ZSEXP, SEXP GammainvSEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP nSEXP, SEXP jSEXP, SEXP JSEXP, SEXP pSEXP, SEXP c0SEXP, SEXP alpha0SEXP, SEXP gamma0SEXP, SEXP b0SEXP, SEXP y0SEXP, SEXP X0SEXP, SEXP n0SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -167,7 +167,7 @@ END_RCPP
 }
 // logPowerPrior_cpp
 double logPowerPrior_cpp(arma::vec const& y0, arma::mat const& X0, arma::vec const& beta, double const& phi, double const& b0, std::string const& distname, std::string const& linkname, int const& n0);
-RcppExport SEXP _glmPOS_logPowerPrior_cpp(SEXP y0SEXP, SEXP X0SEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP b0SEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP n0SEXP) {
+RcppExport SEXP _bayescopulareg_logPowerPrior_cpp(SEXP y0SEXP, SEXP X0SEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP b0SEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP n0SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -185,7 +185,7 @@ END_RCPP
 }
 // logInitPrior_cpp
 double logInitPrior_cpp(arma::vec const& beta, double const& phi, double const& c0, double const& alpha0, double const& gamma0, int const& p);
-RcppExport SEXP _glmPOS_logInitPrior_cpp(SEXP betaSEXP, SEXP phiSEXP, SEXP c0SEXP, SEXP alpha0SEXP, SEXP gamma0SEXP, SEXP pSEXP) {
+RcppExport SEXP _bayescopulareg_logInitPrior_cpp(SEXP betaSEXP, SEXP phiSEXP, SEXP c0SEXP, SEXP alpha0SEXP, SEXP gamma0SEXP, SEXP pSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -201,7 +201,7 @@ END_RCPP
 }
 // loglik_cpp
 double loglik_cpp(const arma::vec& y, const arma::mat& X, const arma::vec& beta, const double& phi, const std::string& distname, const std::string& linkname, const int& n);
-RcppExport SEXP _glmPOS_loglik_cpp(SEXP ySEXP, SEXP XSEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP nSEXP) {
+RcppExport SEXP _bayescopulareg_loglik_cpp(SEXP ySEXP, SEXP XSEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP nSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -218,7 +218,7 @@ END_RCPP
 }
 // sample_copula_cpp
 List sample_copula_cpp(arma::mat const& ymat, List const& Xlist, std::vector<std::string> const& distnamevec, std::vector<std::string> const& linknamevec, arma::vec const& c0vec, List const& S0betalist, arma::vec sigma0logphivec, arma::vec const& alpha0vec, arma::vec const& gamma0vec, arma::mat Gamma, int const& v0, arma::mat const& V0, double const& b0, arma::mat const& y0mat, List const& X0list, int const& M, List beta0list, arma::vec phi0vec, int const& thin);
-RcppExport SEXP _glmPOS_sample_copula_cpp(SEXP ymatSEXP, SEXP XlistSEXP, SEXP distnamevecSEXP, SEXP linknamevecSEXP, SEXP c0vecSEXP, SEXP S0betalistSEXP, SEXP sigma0logphivecSEXP, SEXP alpha0vecSEXP, SEXP gamma0vecSEXP, SEXP GammaSEXP, SEXP v0SEXP, SEXP V0SEXP, SEXP b0SEXP, SEXP y0matSEXP, SEXP X0listSEXP, SEXP MSEXP, SEXP beta0listSEXP, SEXP phi0vecSEXP, SEXP thinSEXP) {
+RcppExport SEXP _bayescopulareg_sample_copula_cpp(SEXP ymatSEXP, SEXP XlistSEXP, SEXP distnamevecSEXP, SEXP linknamevecSEXP, SEXP c0vecSEXP, SEXP S0betalistSEXP, SEXP sigma0logphivecSEXP, SEXP alpha0vecSEXP, SEXP gamma0vecSEXP, SEXP GammaSEXP, SEXP v0SEXP, SEXP V0SEXP, SEXP b0SEXP, SEXP y0matSEXP, SEXP X0listSEXP, SEXP MSEXP, SEXP beta0listSEXP, SEXP phi0vecSEXP, SEXP thinSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -247,7 +247,7 @@ END_RCPP
 }
 // update_Gamma
 arma::mat update_Gamma(arma::mat const& Z, int const& n, int const& v0, arma::mat const& v0V0);
-RcppExport SEXP _glmPOS_update_Gamma(SEXP ZSEXP, SEXP nSEXP, SEXP v0SEXP, SEXP v0V0SEXP) {
+RcppExport SEXP _bayescopulareg_update_Gamma(SEXP ZSEXP, SEXP nSEXP, SEXP v0SEXP, SEXP v0V0SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -261,7 +261,7 @@ END_RCPP
 }
 // update_Z
 arma::mat update_Z(arma::vec const& y, arma::mat const& X, arma::vec const& beta, double const& phi, arma::mat Z, arma::mat const& Gamma, std::string const& distname, const std::string& linkname, const int& n, int const& j);
-RcppExport SEXP _glmPOS_update_Z(SEXP ySEXP, SEXP XSEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP ZSEXP, SEXP GammaSEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP nSEXP, SEXP jSEXP) {
+RcppExport SEXP _bayescopulareg_update_Z(SEXP ySEXP, SEXP XSEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP ZSEXP, SEXP GammaSEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP nSEXP, SEXP jSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -281,7 +281,7 @@ END_RCPP
 }
 // update_params
 List update_params(arma::vec const& y, arma::mat const& X, arma::vec const& beta, double const& phi, arma::mat Z, arma::mat Gammainv, double const& c0, arma::mat const& S0beta, double const& sigma0logphi, std::string const& distname, std::string const& linkname, int const& n, int const& j, int const& J, int const& p, double const& alpha0, double const& gamma0, double const& b0, arma::vec const& y0, arma::mat const& X0, int const& n0);
-RcppExport SEXP _glmPOS_update_params(SEXP ySEXP, SEXP XSEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP ZSEXP, SEXP GammainvSEXP, SEXP c0SEXP, SEXP S0betaSEXP, SEXP sigma0logphiSEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP nSEXP, SEXP jSEXP, SEXP JSEXP, SEXP pSEXP, SEXP alpha0SEXP, SEXP gamma0SEXP, SEXP b0SEXP, SEXP y0SEXP, SEXP X0SEXP, SEXP n0SEXP) {
+RcppExport SEXP _bayescopulareg_update_params(SEXP ySEXP, SEXP XSEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP ZSEXP, SEXP GammainvSEXP, SEXP c0SEXP, SEXP S0betaSEXP, SEXP sigma0logphiSEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP nSEXP, SEXP jSEXP, SEXP JSEXP, SEXP pSEXP, SEXP alpha0SEXP, SEXP gamma0SEXP, SEXP b0SEXP, SEXP y0SEXP, SEXP X0SEXP, SEXP n0SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -312,26 +312,26 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_glmPOS_cdf_cpp", (DL_FUNC) &_glmPOS_cdf_cpp, 7},
-    {"_glmPOS_conv_to_normal", (DL_FUNC) &_glmPOS_conv_to_normal, 7},
-    {"_glmPOS_condnormal_cpp", (DL_FUNC) &_glmPOS_condnormal_cpp, 3},
-    {"_glmPOS_copula_predict", (DL_FUNC) &_glmPOS_copula_predict, 8},
-    {"_glmPOS_copula_predict_all", (DL_FUNC) &_glmPOS_copula_predict_all, 9},
-    {"_glmPOS_invcdf_cpp", (DL_FUNC) &_glmPOS_invcdf_cpp, 7},
-    {"_glmPOS_sample_y", (DL_FUNC) &_glmPOS_sample_y, 7},
-    {"_glmPOS_linkinv_cpp", (DL_FUNC) &_glmPOS_linkinv_cpp, 2},
-    {"_glmPOS_logPost", (DL_FUNC) &_glmPOS_logPost, 19},
-    {"_glmPOS_logPowerPrior_cpp", (DL_FUNC) &_glmPOS_logPowerPrior_cpp, 8},
-    {"_glmPOS_logInitPrior_cpp", (DL_FUNC) &_glmPOS_logInitPrior_cpp, 6},
-    {"_glmPOS_loglik_cpp", (DL_FUNC) &_glmPOS_loglik_cpp, 7},
-    {"_glmPOS_sample_copula_cpp", (DL_FUNC) &_glmPOS_sample_copula_cpp, 19},
-    {"_glmPOS_update_Gamma", (DL_FUNC) &_glmPOS_update_Gamma, 4},
-    {"_glmPOS_update_Z", (DL_FUNC) &_glmPOS_update_Z, 10},
-    {"_glmPOS_update_params", (DL_FUNC) &_glmPOS_update_params, 21},
+    {"_bayescopulareg_cdf_cpp", (DL_FUNC) &_bayescopulareg_cdf_cpp, 7},
+    {"_bayescopulareg_conv_to_normal", (DL_FUNC) &_bayescopulareg_conv_to_normal, 7},
+    {"_bayescopulareg_condnormal_cpp", (DL_FUNC) &_bayescopulareg_condnormal_cpp, 3},
+    {"_bayescopulareg_copula_predict", (DL_FUNC) &_bayescopulareg_copula_predict, 8},
+    {"_bayescopulareg_copula_predict_all", (DL_FUNC) &_bayescopulareg_copula_predict_all, 9},
+    {"_bayescopulareg_invcdf_cpp", (DL_FUNC) &_bayescopulareg_invcdf_cpp, 7},
+    {"_bayescopulareg_sample_y", (DL_FUNC) &_bayescopulareg_sample_y, 7},
+    {"_bayescopulareg_linkinv_cpp", (DL_FUNC) &_bayescopulareg_linkinv_cpp, 2},
+    {"_bayescopulareg_logPost", (DL_FUNC) &_bayescopulareg_logPost, 19},
+    {"_bayescopulareg_logPowerPrior_cpp", (DL_FUNC) &_bayescopulareg_logPowerPrior_cpp, 8},
+    {"_bayescopulareg_logInitPrior_cpp", (DL_FUNC) &_bayescopulareg_logInitPrior_cpp, 6},
+    {"_bayescopulareg_loglik_cpp", (DL_FUNC) &_bayescopulareg_loglik_cpp, 7},
+    {"_bayescopulareg_sample_copula_cpp", (DL_FUNC) &_bayescopulareg_sample_copula_cpp, 19},
+    {"_bayescopulareg_update_Gamma", (DL_FUNC) &_bayescopulareg_update_Gamma, 4},
+    {"_bayescopulareg_update_Z", (DL_FUNC) &_bayescopulareg_update_Z, 10},
+    {"_bayescopulareg_update_params", (DL_FUNC) &_bayescopulareg_update_params, 21},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_glmPOS(DllInfo *dll) {
+RcppExport void R_init_bayescopulareg(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

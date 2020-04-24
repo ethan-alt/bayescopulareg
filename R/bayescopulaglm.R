@@ -146,7 +146,6 @@ bayescopulaglm <- function(
 #' Uses random-walk Metropolis to update regression coefficients and dispersion parameters.
 #' Assumes Inverse Wishart prior on augmented data with covariance matrix as developed by Hoff (2007).
 #' 
-#' @useDynLib glmPOS
 #' 
 #'
 #' @param formula.list A \eqn{J}-dimensional list of formulas giving how the endpoints are related to the covariates
