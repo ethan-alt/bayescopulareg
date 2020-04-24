@@ -1,4 +1,4 @@
-#include "posGLM.h"
+#include "bayescopulareg.h"
 // [[Rcpp::depends(RcppArmadillo, RcppDist)]]
 using namespace Rcpp;
 

@@ -1,6 +1,6 @@
 
-#ifndef POSGLM_H
-#define POSGLM_H
+#ifndef BAYESCOPULAREG_H
+#define BAYESCOPULAREG_H
 
 #include <RcppDist.h>
 #include <RcppArmadillo.h>
