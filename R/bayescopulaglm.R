@@ -1,9 +1,9 @@
 
 #' Sample from Bayesian copula GLM
 #' 
-#' Sample from a GLM via Bayesian copula regression as developed in Pitt et al. (2006).
+#' Sample from a GLM via Bayesian copula regression model.
 #' Uses random-walk Metropolis to update regression coefficients and dispersion parameters.
-#' Assumes Inverse Wishart prior on augmented data with covariance matrix as developed by Hoff (2007).
+#' Assumes Inverse Wishart prior on augmented data.
 #' 
 #' @importFrom stats coef cor glm model.matrix cov sd
 #' 

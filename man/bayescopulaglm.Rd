@@ -74,9 +74,9 @@ A named list.
 \code{["phiaccept"]} gives a \eqn{M \times J} matrix where each row indicates whether the proposal for the dispersion parameter was accepted
 }
 \description{
-Sample from a GLM via Bayesian copula regression as developed in Pitt et al. (2006).
+Sample from a GLM via Bayesian copula regression model.
 Uses random-walk Metropolis to update regression coefficients and dispersion parameters.
-Assumes Inverse Wishart prior on augmented data with covariance matrix as developed by Hoff (2007).
+Assumes Inverse Wishart prior on augmented data.
 }
 \examples{
 set.seed(1234)
