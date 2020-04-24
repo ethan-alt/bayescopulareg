@@ -72,8 +72,27 @@ BEGIN_RCPP
 END_RCPP
 }
 // copula_predict_all
-List copula_predict_all(List const& Xlistlist, std::vector<std::string> const& distnamevec, std::vector<std::string> const& linknamevec, List const& betasamplelist, arma::mat const& phisamplemat, arma::cube const& Gammaarray, int const& n, int const& J, int const& M);
-RcppExport SEXP _bayescopulareg_copula_predict_all(SEXP XlistlistSEXP, SEXP distnamevecSEXP, SEXP linknamevecSEXP, SEXP betasamplelistSEXP, SEXP phisamplematSEXP, SEXP GammaarraySEXP, SEXP nSEXP, SEXP JSEXP, SEXP MSEXP) {
+arma::cube copula_predict_all(List const& Xlist, std::vector<std::string> const& distnamevec, std::vector<std::string> const& linknamevec, List const& betasamplelist, arma::mat const& phisamplemat, arma::cube const& Gammaarray, int const& n, int const& J, int const& M);
+RcppExport SEXP _bayescopulareg_copula_predict_all(SEXP XlistSEXP, SEXP distnamevecSEXP, SEXP linknamevecSEXP, SEXP betasamplelistSEXP, SEXP phisamplematSEXP, SEXP GammaarraySEXP, SEXP nSEXP, SEXP JSEXP, SEXP MSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< List const& >::type Xlist(XlistSEXP);
+    Rcpp::traits::input_parameter< std::vector<std::string> const& >::type distnamevec(distnamevecSEXP);
+    Rcpp::traits::input_parameter< std::vector<std::string> const& >::type linknamevec(linknamevecSEXP);
+    Rcpp::traits::input_parameter< List const& >::type betasamplelist(betasamplelistSEXP);
+    Rcpp::traits::input_parameter< arma::mat const& >::type phisamplemat(phisamplematSEXP);
+    Rcpp::traits::input_parameter< arma::cube const& >::type Gammaarray(GammaarraySEXP);
+    Rcpp::traits::input_parameter< int const& >::type n(nSEXP);
+    Rcpp::traits::input_parameter< int const& >::type J(JSEXP);
+    Rcpp::traits::input_parameter< int const& >::type M(MSEXP);
+    rcpp_result_gen = Rcpp::wrap(copula_predict_all(Xlist, distnamevec, linknamevec, betasamplelist, phisamplemat, Gammaarray, n, J, M));
+    return rcpp_result_gen;
+END_RCPP
+}
+// copula_predict_all_list
+List copula_predict_all_list(List const& Xlistlist, std::vector<std::string> const& distnamevec, std::vector<std::string> const& linknamevec, List const& betasamplelist, arma::mat const& phisamplemat, arma::cube const& Gammaarray, int const& n, int const& J, int const& M);
+RcppExport SEXP _bayescopulareg_copula_predict_all_list(SEXP XlistlistSEXP, SEXP distnamevecSEXP, SEXP linknamevecSEXP, SEXP betasamplelistSEXP, SEXP phisamplematSEXP, SEXP GammaarraySEXP, SEXP nSEXP, SEXP JSEXP, SEXP MSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -86,7 +105,7 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int const& >::type n(nSEXP);
     Rcpp::traits::input_parameter< int const& >::type J(JSEXP);
     Rcpp::traits::input_parameter< int const& >::type M(MSEXP);
-    rcpp_result_gen = Rcpp::wrap(copula_predict_all(Xlistlist, distnamevec, linknamevec, betasamplelist, phisamplemat, Gammaarray, n, J, M));
+    rcpp_result_gen = Rcpp::wrap(copula_predict_all_list(Xlistlist, distnamevec, linknamevec, betasamplelist, phisamplemat, Gammaarray, n, J, M));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -317,6 +336,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_bayescopulareg_condnormal_cpp", (DL_FUNC) &_bayescopulareg_condnormal_cpp, 3},
     {"_bayescopulareg_copula_predict", (DL_FUNC) &_bayescopulareg_copula_predict, 8},
     {"_bayescopulareg_copula_predict_all", (DL_FUNC) &_bayescopulareg_copula_predict_all, 9},
+    {"_bayescopulareg_copula_predict_all_list", (DL_FUNC) &_bayescopulareg_copula_predict_all_list, 9},
     {"_bayescopulareg_invcdf_cpp", (DL_FUNC) &_bayescopulareg_invcdf_cpp, 7},
     {"_bayescopulareg_sample_y", (DL_FUNC) &_bayescopulareg_sample_y, 7},
     {"_bayescopulareg_linkinv_cpp", (DL_FUNC) &_bayescopulareg_linkinv_cpp, 2},

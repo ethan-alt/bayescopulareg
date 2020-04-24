@@ -51,6 +51,56 @@ arma::mat copula_predict (
 }
 
 
+
+
+//' List of posterior predictive samples of copula GLM
+//' 
+//' Obtain a sample from the posterior predictive density of a copula GLM
+//' 
+//' @param Xlist a \code{J}-dimensional list of design matrices corresponding to new data
+//' @param distnamevec a \code{character} vector of length \eqn{J} giving the name of the distribution of each endpoint
+//' @param linknamevec a \code{character} vector of length \eqn{J} giving the name of the link function of each endpoint
+//' @param betasamplelist a list of length \code{J}. Each element is a list of length \code{M} giving the posterior draws
+//' @param phisamplemat a \eqn{M \times J} matrix of sampled dispersion parameters
+//' @param Gammaarray a \eqn{J \times J \times M} array of sampled correlation matrices
+//' @param n sample size for future data
+//' @param J number of endpoints
+//' @param M number of samples
+//' 
+//' @return \code{array} of dimension \code{c(n, J, nsims)} of predictive posterior draws. Each slice corresponds to 1 draw
+//' @keywords internal
+//' @noRd
+// [[Rcpp::export]]
+arma::cube copula_predict_all (
+    List const& Xlist,
+    std::vector<std::string> const& distnamevec,
+    std::vector<std::string> const& linknamevec,
+    List const& betasamplelist,
+    arma::mat const& phisamplemat,
+    arma::cube const& Gammaarray,
+    int const& n,
+    int const& J,
+    int const& M
+) {
+  arma::cube yarray = arma::cube(n, J, M, arma::fill::zeros);
+  List betasample = List(J);
+  for ( int m = 0; m < M; m++ ) {
+    for ( int j = 0; j < J; j++ ) {
+      arma::mat betaj = betasamplelist[j];
+      betasample[j] = betaj.row(m).t();
+    }
+    arma::vec phisample = phisamplemat.row(m).t();
+    arma::mat Gamma = Gammaarray.slice(m);
+    arma::mat ymat = copula_predict( Xlist, distnamevec, linknamevec, Gamma, betasample, phisample, n, J );
+    yarray.slice(m) = ymat;
+  }
+  return yarray;
+}
+
+
+
+
+
 //' List of posterior predictive samples of copula GLM
 //' 
 //' Obtain a sample from the posterior predictive density of a copula GLM
@@ -69,7 +119,7 @@ arma::mat copula_predict (
 //' @keywords internal
 //' @noRd
 // [[Rcpp::export]]
-List copula_predict_all (
+List copula_predict_all_list (
   List const& Xlistlist,
   std::vector<std::string> const& distnamevec,
   std::vector<std::string> const& linknamevec,

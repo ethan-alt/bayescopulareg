@@ -100,6 +100,7 @@ bayescopulaglm <- function(
     
     ## Obtain starting values for new chain as last values for burn chain
     beta0 <- lapply(smpl$betasample, function(x) as.matrix(x)[nrow(x), ] )
+    beta0 <- lapply(beta0, as.numeric)
     phi0 <- smpl$phisample[burnin, ]
     Gamma0 <- smpl$Gammasample[, , burnin]
     
@@ -118,7 +119,6 @@ bayescopulaglm <- function(
   }
   
   ## Now, obtain post burn-in sampling accounting for thinning
-  beta0 <- lapply(beta0, as.numeric)
   smpl <- bayescopulaglm_wrapper(
     formula.list, family.list, data, M = M, histdata, b0,
     c0, alpha0, gamma0, Gamma0, S0beta, sigma0logphi, v0, V0,

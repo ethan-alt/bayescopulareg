@@ -69,6 +69,27 @@ copula_predict <- function(Xlist, distnamevec, linknamevec, Gamma, betasample, p
 #' 
 #' Obtain a sample from the posterior predictive density of a copula GLM
 #' 
+#' @param Xlist a \code{J}-dimensional list of design matrices corresponding to new data
+#' @param distnamevec a \code{character} vector of length \eqn{J} giving the name of the distribution of each endpoint
+#' @param linknamevec a \code{character} vector of length \eqn{J} giving the name of the link function of each endpoint
+#' @param betasamplelist a list of length \code{J}. Each element is a list of length \code{M} giving the posterior draws
+#' @param phisamplemat a \eqn{M \times J} matrix of sampled dispersion parameters
+#' @param Gammaarray a \eqn{J \times J \times M} array of sampled correlation matrices
+#' @param n sample size for future data
+#' @param J number of endpoints
+#' @param M number of samples
+#' 
+#' @return \code{array} of dimension \code{c(n, J, nsims)} of predictive posterior draws. Each slice corresponds to 1 draw
+#' @keywords internal
+#' @noRd
+copula_predict_all <- function(Xlist, distnamevec, linknamevec, betasamplelist, phisamplemat, Gammaarray, n, J, M) {
+    .Call('_bayescopulareg_copula_predict_all', PACKAGE = 'bayescopulareg', Xlist, distnamevec, linknamevec, betasamplelist, phisamplemat, Gammaarray, n, J, M)
+}
+
+#' List of posterior predictive samples of copula GLM
+#' 
+#' Obtain a sample from the posterior predictive density of a copula GLM
+#' 
 #' @param Xlistlist a \code{M}-dimensional \code{list} of lists. The inner list is a list of design matrices of length \code{J}
 #' @param distnamevec a \code{character} vector of length \eqn{J} giving the name of the distribution of each endpoint
 #' @param linknamevec a \code{character} vector of length \eqn{J} giving the name of the link function of each endpoint
@@ -82,8 +103,8 @@ copula_predict <- function(Xlist, distnamevec, linknamevec, Gamma, betasample, p
 #' @return a \eqn{n \times J} matrix of samples from the predictive posterior density
 #' @keywords internal
 #' @noRd
-copula_predict_all <- function(Xlistlist, distnamevec, linknamevec, betasamplelist, phisamplemat, Gammaarray, n, J, M) {
-    .Call('_bayescopulareg_copula_predict_all', PACKAGE = 'bayescopulareg', Xlistlist, distnamevec, linknamevec, betasamplelist, phisamplemat, Gammaarray, n, J, M)
+copula_predict_all_list <- function(Xlistlist, distnamevec, linknamevec, betasamplelist, phisamplemat, Gammaarray, n, J, M) {
+    .Call('_bayescopulareg_copula_predict_all_list', PACKAGE = 'bayescopulareg', Xlistlist, distnamevec, linknamevec, betasamplelist, phisamplemat, Gammaarray, n, J, M)
 }
 
 #' Inverse CDF of GLM
