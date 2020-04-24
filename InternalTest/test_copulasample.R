@@ -19,17 +19,14 @@ sample <- mvbayesglm(
   formula.list, family.list, data, M = M
 )
 
-postmean <- function(smpl, fam.list, burn = 1000) {
+postmean <- function(smpl, burn = 1000) {
   post.beta <- do.call(cbind, smpl$betasample)
   post.beta <- post.beta[-(1:burn), ]
   post.beta <- colMeans(post.beta)
   post.disp <- colMeans(smpl$phisample[-(1:burn), ])
   res <- rbind('beta' = post.beta, 'dispersion' = post.disp)
-  colnames(res) <- lapply(fam.list, function(f) f$family)
   return(res)
 }
-
-
 
 glm.list <- list()
 for (i in 1:length(formula.list)) {
@@ -39,14 +36,71 @@ get_params <- function(fit) {
   c('beta' = fit$coefficients, 'dispersion' = summary(fit)$dispersion)
 }
 sapply(glm.list, get_params)
-postmean(sample, family.list, burn = 2000)
-
-
-
-sample2 <- mvbayesglm(
-  formula.list[c(1, 3)], family.list[c(1, 3)], data, M = M
-)
-sapply(glm.list[c(1, 3)], get_params)
-postmean(sample2, family.list[c(1, 3)], burn = 2000)
+postmean(sample, burn = 2000)
+apply(sample$Gammasample, c(1, 2), mean)
+# 
+# 
+# 
+# sample2 <- mvbayesglm_wrapper(
+#   formula.list[c(1, 3)], family.list[c(1, 3)], data, M = M
+# )
+# sapply(glm.list[c(1, 3)], get_params)
+# postmean(sample2, burn = 2000)
+# 
+# 
+# Gamma <- rbind(
+#   c(1, 0.5, 0.25),
+#   c(0.5, 1, 0.125),
+#   c(0.25, 0.125, 1)
+# )
+# Z <- mvtnorm::rmvnorm(n = n, sigma = Gamma[1:2, 1:2])
+# U <- pnorm(Z)
+# Y <- U
+# Y[, 1] <- qnorm(U[, 1], mean = 0.25 * x, sd = 1)
+# Y[, 2] <- qgamma(U[, 2], shape = 1, scale = exp(0.25 * x))
+# data <- data.frame(Y, x)
+# names(data)[1:2] <- c('y1', 'y2')
+# 
+# 
+# formula.list <- list(y1 ~ 0+x, y2 ~ 0+x)
+# family.list <- list(gaussian(), Gamma())
+# sample3 <- mvbayesglm(
+#   formula.list, family.list, data, M = M
+# )
+# 
+# for( i in 1:2 ) {
+#   glm.list[[i]] <- glm(formula.list[[i]], family.list[[i]], data)
+# }
+# 
+# sapply(glm.list[1:2], get_params)
+# postmean(sample3, burn = 2000)
+# apply(sample3$Gammasample, c(1, 2), mean)
+# 
+# 
+# 
+# 
+# 
+# data$y2 <- qnorm(U[, 2], mean = 0.5 * x, sd = 2)
+# formula.list <- list(y1 ~ 0+x, y2 ~ 0+x)
+# family.list <- list(gaussian(), gaussian())
+# sample4 <- mvbayesglm(
+#   formula.list, family.list, data, M = M
+# )
+# 
+# for( i in 1:2 ) {
+#   glm.list[[i]] <- glm(formula.list[[i]], family.list[[i]], data)
+# }
+# 
+# sapply(glm.list, get_params)
+# postmean(sample4, burn = 2000)
+# apply(sample4$Gammasample, c(1, 2), mean)
+# 
+# library(systemfit)
+# freq <- systemfit::systemfit(
+#   formula.list,
+#   method = 'SUR',
+#   data = data
+# )
+# cov2cor(freq$residCov)
 
 

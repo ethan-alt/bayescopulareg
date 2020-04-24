@@ -8,19 +8,22 @@ mvbayesglm(
   formula.list,
   family.list,
   data,
-  M = 10000,
-  data0 = NULL,
+  histdata = NULL,
   b0 = NULL,
   c0 = NULL,
   alpha0 = NULL,
   gamma0 = NULL,
-  Gamma = NULL,
+  Gamma0 = NULL,
   S0beta = NULL,
   sigma0logphi = NULL,
   v0 = NULL,
   V0 = NULL,
   beta0 = NULL,
-  phi0 = NULL
+  phi0 = NULL,
+  M = 10000,
+  burnin = 2000,
+  thin = 1,
+  adaptive = TRUE
 )
 }
 \arguments{
@@ -30,11 +33,9 @@ mvbayesglm(
 
 \item{data}{A \code{data frame} containing all response variables and covariates. Variables must be named.}
 
-\item{M}{Number of desired posterior samples}
+\item{histdata}{\emph{Optional} historical data set for power prior on \eqn{\beta, \phi}}
 
-\item{data0}{\emph{Optional} historical data set for power prior on \eqn{\beta, \phi}}
-
-\item{b0}{\emph{Optional} power prior hyperparameter}
+\item{b0}{\emph{Optional} power prior hyperparameter. Ignored if \code{is.null(histdata)}. Must be a number between \eqn{(0, 1]} if \code{histdata} is not \code{NULL}}
 
 \item{c0}{A \eqn{J}-dimensional vector for \eqn{\beta \mid \phi} prior covvariance: \eqn{\text{Cov}(\beta \mid \phi) = c_0 \phi I_n }. If \code{NULL}, sets \eqn{c_0 = 10000} for each endpoint}
 
@@ -42,7 +43,7 @@ mvbayesglm(
 
 \item{gamma0}{A \eqn{J}-dimensional vector giving the rate hyperparameter for each dispersion parameter on the prior on \eqn{\phi}. If \code{NULL} sets \eqn{\alpha_0 = .01} for each dispersion parameter}
 
-\item{Gamma}{Initial value for correlation matrix. If \code{NULL} defaults to the correlation matrix from the responses.}
+\item{Gamma0}{Initial value for correlation matrix. If \code{NULL} defaults to the correlation matrix from the responses.}
 
 \item{S0beta}{A \eqn{J}-dimensional \code{list} for the covariance matrix for random walk metropolis on beta. Each matrix must have the same dimension as the corresponding regression coefficient. If \code{NULL}, uses \code{solve(crossprod(X))}}
 
@@ -55,6 +56,14 @@ mvbayesglm(
 \item{beta0}{A \eqn{J}-dimensional \code{list} giving starting values for random walk Metropolis on the regression coefficients. If \code{NULL}, defaults to the GLM MLE}
 
 \item{phi0}{A \eqn{J}-dimensional \code{vector} giving initial values for dispersion parameters. If \code{NULL}. Dispersion parameters will alwyas return 1 for binomial and Poisson models}
+
+\item{M}{Number of desired posterior samples after burn-in and thinning}
+
+\item{burnin}{burn-in parameter}
+
+\item{thin}{thinning parameter}
+
+\item{adaptive}{logical indicating whether to use adaptive random walk MCMC to estimate parameters. This takes longer, but generally has a better acceptance rate}
 }
 \value{
 A named list. 
@@ -65,7 +74,7 @@ A named list.
 \code{["phiaccept"]} gives a \eqn{M \times J} matrix where each row indicates whether the proposal for the dispersion parameter was accepted
 }
 \description{
-Sample from any GLM via Bayesian copula regression as developed in Pitt et al. (2006).
+Sample from a GLM via Bayesian copula regression as developed in Pitt et al. (2006).
 Uses random-walk Metropolis to update regression coefficients and dispersion parameters.
 Assumes Inverse Wishart prior on augmented data with covariance matrix as developed by Hoff (2007).
 }
