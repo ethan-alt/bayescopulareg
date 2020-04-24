@@ -229,6 +229,11 @@ bayescopulaglm_wrapper <- function(
       stop('b0 must be NULL if histdata is NULL')
     }
   }
+  famlist <- sapply(family.list, function(f)f$family)
+  if ( !( famlist %in% c('gaussian', 'poisson', 'Gamma', 'binomial') ) ) {
+    stop("Family must be one of gaussian, poisson, Gamma, or binomial")
+  }
+  
   
   if( is.null(b0) ) {
     b0 <- 0   ## corresponds to no historical data influence in C++ code
