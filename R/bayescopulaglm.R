@@ -12,7 +12,7 @@
 #' @param data A \code{data frame} containing all response variables and covariates. Variables must be named.
 #' @param histdata \emph{Optional} historical data set for power prior on \eqn{\beta, \phi}
 #' @param b0 \emph{Optional} power prior hyperparameter. Ignored if \code{is.null(histdata)}. Must be a number between \eqn{(0, 1]} if \code{histdata} is not \code{NULL}
-#' @param c0 A \eqn{J}-dimensional vector for \eqn{\beta \mid \phi} prior covariance: \eqn{\text{Cov}(\beta \mid \phi) = c_0 \phi I_n }. If \code{NULL}, sets \eqn{c_0 = 10000} for each endpoint
+#' @param c0 A \eqn{J}-dimensional vector for \eqn{\beta \mid \phi} prior covariance. If \code{NULL}, sets \eqn{c_0 = 10000} for each endpoint
 #' @param alpha0 A \eqn{J}-dimensional vector giving the shape hyperparameter for each dispersion parameter on the prior on \eqn{\phi}. If \code{NULL} sets \eqn{\alpha_0 = .01} for each dispersion parameter
 #' @param gamma0 A \eqn{J}-dimensional vector giving the rate hyperparameter for each dispersion parameter on the prior on \eqn{\phi}. If \code{NULL} sets \eqn{\alpha_0 = .01} for each dispersion parameter
 #' @param Gamma0 Initial value for correlation matrix. If \code{NULL} defaults to the correlation matrix from the responses.
