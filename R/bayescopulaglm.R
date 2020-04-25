@@ -36,7 +36,7 @@
 #' @examples 
 #' set.seed(1234)
 #' n <- 100
-#' M <- 1000
+#' M <- 100
 #' 
 #' x <- runif(n, 1, 2)
 #' y1 <- 0.25 * x + rnorm(100)
@@ -49,7 +49,7 @@
 #' ## Perform copula regression sampling with default
 #' ## (noninformative) priors
 #' sample <- bayescopulaglm(
-#'   formula.list, family.list, data, M = M
+#'   formula.list, family.list, data, M = M, burnin = 0, adaptive = F
 #' )
 #' ## Regression coefficients
 #' summary(do.call(cbind, sample$betasample))
