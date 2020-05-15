@@ -2,3 +2,5 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^InternalTest$
+^CRAN-RELEASE$
+^cran-comments\.md$

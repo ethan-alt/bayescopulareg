@@ -36,7 +36,7 @@ arma::mat copula_predict (
   
   // First, sample Z ~ N(0, Gamma)
   arma::mat Z = arma::mat( n, J, arma::fill::randn ); // n x J matrix filled with N(0,1) values
-  Z = Z * arma::chol( Gamma, "upper" );               // Z * U where Gamma = U' U and U is upper triangular
+  Z = Z * arma::chol( arma::symmatu( Gamma) , "upper" );               // Z * U where Gamma = U' U and U is upper triangular
   
   // Now, sample y based on (beta, phi)
   for ( int j = 0; j < J; j++ ) {

@@ -295,9 +295,6 @@ bayescopulaglm_wrapper <- function(
   if ( class(S0beta) != 'list' ) {
     stop('S0beta must be a list of matrices')
   }
-  if ( any( sapply(S0beta, class) != 'matrix' ) ) {
-    stop('At least one element of the list S0beta is not a matrix')
-  }
   
   if ( is.null(sigma0logphi) ) {
     sigma0logphi <- rep(0.1, times = J)

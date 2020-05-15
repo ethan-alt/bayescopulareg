@@ -57,7 +57,7 @@ List condnormal_cpp(
   arma::mat GammajJ = Gamma.row(j);                      // GammajJ = Gamma[j,-j]
   Gamma.shed_row(j);                           // Gamma = Gamma[-j,-j]
   
-  arma::mat Q = GammajJ * arma::inv_sympd( Gamma );     // Q = Gamma[j,-j] %*% solve( Gamma[-j, -j] )
+  arma::mat Q = GammajJ * arma::inv_sympd( arma::symmatu( Gamma ) );     // Q = Gamma[j,-j] %*% solve( Gamma[-j, -j] )
   
   arma::mat condvarmat = gammajj - Q * GammajJ.t();
   double condsd = pow(condvarmat(0), 0.5);
