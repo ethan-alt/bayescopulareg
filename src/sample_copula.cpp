@@ -72,9 +72,8 @@ List sample_copula_cpp (
   double alpha0, gamma0;
   
   // Initialize temp variables
-  arma::vec y, beta;
-  arma::mat X, Z, S0beta, Gammainv, betamatj;
-  std::string distname, linkname;
+  arma::mat X, Z, S0beta, Gammainv, betamatj;  // INITIALIZE
+  std::string distname, linkname;  // INITIALIZE
   
   // Compute scale matrix for Inverse Wishart
   arma::mat v0V0 = v0 * V0;
@@ -85,11 +84,14 @@ List sample_copula_cpp (
   Z = arma::mat( n, J, arma::fill::randn );
   for ( int j = 0; j < J; j++ ) {
     // First, get initial Z
-    y = ymat.col(j);
+    arma::vec y = ymat.col(j);
     arma::mat X = Xlist[j];
     arma::vec beta = beta0list[j];
     double phi = phi0vec(j);
     Z = update_Z( y, X, beta, phi, Z, Gamma, distnamevec[j], linknamevec[j], n, j);
+    
+    alpha0 = alpha0vec(j);
+    gamma0 = gamma0vec(j);
     
     // initialize betasample as list of matrices
     betamatj = arma::mat( M, X.n_cols, arma::fill::zeros );
