@@ -21,4 +21,13 @@ Useful links:
 }
 
 }
+\author{
+\strong{Maintainer}: Ethan Alt \email{ethanalt@live.unc.edu}
+
+Authors:
+\itemize{
+  \item Yash Bhosale \email{bhosaley5@gmail.com}
+}
+
+}
 \keyword{internal}

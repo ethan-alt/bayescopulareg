@@ -3,7 +3,10 @@ Type: Package
 Title: Bayesian Copula Regression
 Version: 0.1.1
 Date: 2020-04-24
-Author: Ethan Alt
+Authors@R: c(person("Ethan", "Alt", role = c("aut", "cre"),
+                     email = "ethanalt@live.unc.edu"),
+              person("Yash", "Bhosale", role = "aut", email = "bhosaley5@gmail.com")
+             )
 Maintainer: Ethan Alt <ethanalt@live.unc.edu>
 Description: Tools for Bayesian copula generalized linear models (GLMs). 
              The sampling scheme is based on Pitt, Chan, and Kohn (2006) <doi:10.1093/biomet/93.3.537>. 
