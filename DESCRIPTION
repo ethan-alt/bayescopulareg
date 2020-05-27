@@ -1,7 +1,7 @@
 Package: bayescopulareg
 Type: Package
 Title: Bayesian Copula Regression
-Version: 0.1.1
+Version: 0.1.2.9000
 Date: 2020-04-24
 Authors@R: c(person("Ethan", "Alt", role = c("aut", "cre"),
                      email = "ethanalt@live.unc.edu"),
