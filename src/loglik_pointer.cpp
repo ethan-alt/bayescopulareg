@@ -77,7 +77,7 @@ double loglik_gamma(
   b = phi * mu;
   
   loglik_i = (a - 1) * log(y) - y / b - a * log(b);
-  return sum(loglik_i) - n * lgamma(a);
+  return arma::accu(loglik_i) - n * lgamma(a);
 }
 
 
@@ -110,8 +110,8 @@ double loglik_binomial(
   eta = X * beta;
   p = linkinv_cpp( eta, linkname );
   
-  loglik_i = y * log(p) + ( 1 - y ) * log(1 - p);
-  return sum(loglik_i);
+  loglik_i = y % log(p) + ( 1 - y ) % log(1 - p);
+  return arma::accu(loglik_i);
 }
 
 
@@ -145,8 +145,8 @@ double loglik_poisson(
   eta      = X * beta;
   lambda   = linkinv_cpp( eta, linkname );
   
-  loglik_i = y * log(lambda) - lambda;
-  return sum(loglik_i);
+  loglik_i = y % log(lambda) - lambda;
+  return arma::accu(loglik_i);
 }
 
 

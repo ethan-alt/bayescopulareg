@@ -167,4 +167,32 @@ arma::vec sample_y (
 
 
 
+arma::vec phi_rwmh (
+    arma::vec const& y,
+    arma::mat const& X,
+    arma::vec const& beta,
+    double const& phi,
+    arma::mat Z,
+    arma::mat const& Gammainv,
+    double const& sigma0logphi,
+    std::string const& distname,
+    std::string const& linkname,
+    int const& n,
+    int const& j,
+    int const& J,
+    int const& p,
+    double const& c0,
+    double const& alpha0,
+    double const& gamma0,
+    double const& b0,
+    arma::vec const& y0,
+    arma::mat const& X0,
+    int const& n0
+);
+
+
+
+
+
+
 #endif

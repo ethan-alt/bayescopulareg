@@ -166,3 +166,15 @@ List sample_copula_cpp (
     _["phiaccept"] = phiacceptmat
   );
 }
+
+
+
+
+
+
+
+
+
+
+
+

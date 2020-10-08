@@ -28,8 +28,9 @@ arma::vec beta_rwmh (
 
   arma::vec res = arma::vec(p+1, arma::fill::zeros);   // first element will store acceptance int
   
-  // Proposal is N(beta, S0beta);
-  arma::vec betanew = arma::mvnrnd( beta, S0beta );
+  // Proposal is MVT(beta, S0beta);
+  // arma::vec betanew = arma::mvnrnd( beta, S0beta );
+  arma::vec betanew = rmvt(1, beta, S0beta, 5).t();
   
   // Get log posterior for beta, betanew
   double l0 = logPost ( 
@@ -174,7 +175,7 @@ List update_params (
     int const& n0
 ) {
 
-  // Create empty vector to store whether (beta, phi, Gamma) proposal was accepted
+  // Create empty vector to store whether (beta, phi) proposal was accepted
   arma::vec accept(2, arma::fill::zeros);  // 1 for beta, 1 for phi
 
   // Sample beta
@@ -188,7 +189,7 @@ List update_params (
 
   // Sample phi
   arma::vec phiprop = phi_rwmh (
-    y, X, beta, phi, Z, Gammainv, sigma0logphi,
+    y, X, betaprop, phi, Z, Gammainv, sigma0logphi,
     distname, linkname, n, j, J, p, c0,
     alpha0, gamma0, b0, y0, X0, n0
   );
@@ -196,7 +197,7 @@ List update_params (
   
   
   // Update Z based on new (beta, phi)
-  Z = update_Z( y, X, beta, phi, Z, Gammainv, distname, linkname, n, j );
+  Z = update_Z( y, X, betaprop, phiprop(1), Z, Gammainv, distname, linkname, n, j );
 
   List res = List::create(
     _["beta"] = betaprop,
