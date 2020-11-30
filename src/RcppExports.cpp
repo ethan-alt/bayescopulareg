@@ -23,6 +23,28 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// free_to_chol_cpp
+arma::mat free_to_chol_cpp(arma::vec y);
+RcppExport SEXP _bayescopulareg_free_to_chol_cpp(SEXP ySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::vec >::type y(ySEXP);
+    rcpp_result_gen = Rcpp::wrap(free_to_chol_cpp(y));
+    return rcpp_result_gen;
+END_RCPP
+}
+// chol_to_free_cpp
+std::vector<double> chol_to_free_cpp(arma::mat X);
+RcppExport SEXP _bayescopulareg_chol_to_free_cpp(SEXP XSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat >::type X(XSEXP);
+    rcpp_result_gen = Rcpp::wrap(chol_to_free_cpp(X));
+    return rcpp_result_gen;
+END_RCPP
+}
 // conv_to_normal
 arma::vec conv_to_normal(arma::vec const& y, arma::mat const& X, arma::vec const& beta, double const& phi, std::string const& distname, std::string const& linkname, int const& n);
 RcppExport SEXP _bayescopulareg_conv_to_normal(SEXP ySEXP, SEXP XSEXP, SEXP betaSEXP, SEXP phiSEXP, SEXP distnameSEXP, SEXP linknameSEXP, SEXP nSEXP) {
@@ -332,6 +354,8 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_bayescopulareg_cdf_cpp", (DL_FUNC) &_bayescopulareg_cdf_cpp, 7},
+    {"_bayescopulareg_free_to_chol_cpp", (DL_FUNC) &_bayescopulareg_free_to_chol_cpp, 1},
+    {"_bayescopulareg_chol_to_free_cpp", (DL_FUNC) &_bayescopulareg_chol_to_free_cpp, 1},
     {"_bayescopulareg_conv_to_normal", (DL_FUNC) &_bayescopulareg_conv_to_normal, 7},
     {"_bayescopulareg_condnormal_cpp", (DL_FUNC) &_bayescopulareg_condnormal_cpp, 3},
     {"_bayescopulareg_copula_predict", (DL_FUNC) &_bayescopulareg_copula_predict, 8},
