@@ -2,6 +2,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^InternalTest$
+^toAdd$
 ^CRAN-RELEASE$
 ^cran-comments\.md$
 ^\.travis\.yml$

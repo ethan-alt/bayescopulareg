@@ -21,6 +21,14 @@ cdf_cpp <- function(y, X, beta, phi, distname, linkname, n) {
     .Call('_bayescopulareg_cdf_cpp', PACKAGE = 'bayescopulareg', y, X, beta, phi, distname, linkname, n)
 }
 
+free_to_chol_cpp <- function(y) {
+    .Call('_bayescopulareg_free_to_chol_cpp', PACKAGE = 'bayescopulareg', y)
+}
+
+chol_to_free_cpp <- function(X) {
+    .Call('_bayescopulareg_chol_to_free_cpp', PACKAGE = 'bayescopulareg', X)
+}
+
 #' Convert to Normal
 #' 
 #' This function computes \eqn{h_{ij}^{-1}(y_{ij}) = \Phi^{-1}(F_{ij}(y_{ij} | \beta_j, \phi_j))}
@@ -403,8 +411,7 @@ loglik_cpp <- function(y, X, beta, phi, distname, linkname, n) {
 #' @param Xlist \eqn{J}-dimensional list of design matrices
 #' @param distnamevec \code{character} vector of length \eqn{J}  giving name of distribution
 #' @param linknamevec \code{character} vector of length \eqn{J}  giving name of link function. See \code{help(family)}
-#' @param c0vec \code{numeric} vector giving scale hyperparmeter for conditional prior. The covariance is c0 * phi * S0beta.
-#' @param S0betalist \code{list} of matrices; each matrix gives prior covariance: the prior covariance is c0 * phi * S0beta
+#' @param c0vec \code{numeric} vector giving scale hyperparmeter for conditional prior. The prior covariance for beta is c0 * phi * I.
 #' @param sigma0logphivec \code{vector} giving random walk variance for log dispersion parameter
 #' @param alpha0vec \code{numeric} vector giving shape parameter for the gamma density prior on phi
 #' @param gamma0vec \code{numeric} vector giving rate parameter for the gamma density prior on phi

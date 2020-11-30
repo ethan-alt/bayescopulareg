@@ -157,8 +157,45 @@ arma::vec cdf_cpp(
 
 
 
-
-
+// //' Compute normal scores for each endpoint
+// //' 
+// //' Get normal scores for each endpoint based on regression parameters
+// //' 
+// //' @name get_normal_scores
+// //' @param Ymat \code{matrix} of responses
+// //' @param Xlist list of design matrices
+// //' @param betalist list of regression coefficients
+// //' @param phivec vector of dispersion parameters
+// //' @param linkname string giving name of link function. Must be one of \code{ c( "logit", "probit", "cauchit", "cloglog", "identity", "log", "sqrt", "1/mu^2", "inverse" ) }
+// //' @param distname name of distribution as a string. Must be one of \code{ c ( "gaussian", "gamma", "poisson", "binomial" ) ) }
+// //' 
+// //' @return matrix giving normal scores
+// //' @keywords internal
+// //' @noRd
+// // [[Rcpp::export]]
+// arma::mat get_normal_scores(
+//   arma::mat                       Ymat,
+//   List                     const& Xlist,
+//   List                     const& betalist,
+//   arma::vec                const& phivec,
+//   std::vector<std::string> const& distnamevec,
+//   std::vector<std::string> const& linknamevec 
+// ) {
+//   int J = Ymat.n_cols;
+//   int n = Ymat.n_rows;
+//   for ( int j = 0; j < J; j++ ) {
+//     arma::mat Xj       = Xlist[j];
+//     arma::vec betaj    = betalist[j];
+//     arma::vec zj       = cdf_cpp(Ymat.col(j), Xj, betaj, phivec(j), distnamevec[j], linknamevec[j], n);
+//     NumericVector zvec = wrap(zj);
+//     zvec               = qnorm(zvec);
+//     zj                 = as<arma::vec>(zvec);
+//     Ymat.col(j)        = zj;
+//   }
+//   Ymat.replace(arma::datum::inf, 5.0);
+//   Ymat.replace(-1.0 * arma::datum::inf, -5.0);
+//   return Ymat;
+// }
 
 
 

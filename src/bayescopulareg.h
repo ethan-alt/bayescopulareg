@@ -192,6 +192,31 @@ arma::vec phi_rwmh (
 
 
 
+List update_params_slice (
+    arma::vec const& y,
+    arma::mat const& X,
+    arma::vec const& beta,
+    double const& phi,
+    arma::mat Z,
+    arma::mat Gammainv,
+    double const& c0,
+    arma::vec const& w,
+    double const& sigma0logphi,
+    std::string const& distname,
+    std::string const& linkname,
+    int const& n,
+    int const& j,
+    int const& J,
+    int const& p,
+    double const& alpha0,
+    double const& gamma0,
+    double const& b0,
+    arma::vec const& y0,
+    arma::mat const& X0,
+    int const& n0
+);
+
+
 
 
 
